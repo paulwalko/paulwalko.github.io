@@ -1,0 +1,177 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="This is an excerpt">
+
+<title>Test Post; Please Ignore</title>
+
+<!-- favicon -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico" type="image/icon">
+<link rel="icon" href="http://localhost:4000/favicon.ico" type="image/icon">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/stylesheets/base.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/stylesheets/simplePagination.css">
+
+<script type="text/javascript" src="http://localhost:4000/javascripts/jquery.js"></script>
+
+<!--[if lt IE 9]>
+<script src="http://localhost:4000/javascripts/html5shiv.js"></script>
+<![endif]-->
+    <link rel="stylesheet" type="text/css" href="http://localhost:4000/stylesheets/markdownreader.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/stylesheets/pygments_monokai.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/stylesheets/code_block.css">
+</head>
+
+<body>
+    <header id="l-header">
+    <div class="container">
+        <div class="row logo">
+            <div class="col-lg-7">
+                <h1>Paul Walko</h1>
+            </div>
+        </div>
+
+        <div class="row navicon">
+            <a href=""><i class="fa fa-navicon"></i></a>
+        </div>
+
+        <div class="row navbar">
+            <nav class="col-lg-8 col-md-8 col-xs-12">
+                <ul class="row">
+                    <li class="col-lg-3"><a href="http://localhost:4000/">HOME</a></li>
+                    <li class="col-lg-3">
+                        <ul class="subnav">
+                            <a href="javascript:void(0)">POST</a>
+                            <li><a href="http://localhost:4000/category">CATEGORY</a></li>
+                            <li><a href="http://localhost:4000/tag">TAG</a></li>
+                        </ul>
+                    </li>
+                    <li class="col-lg-3"><a href="http://localhost:4000/about">ABOUT</a></li>
+                    <li class="col-lg-3"><a href="http://localhost:4000/building">PLAY GROUND</a></li>
+                </ul>
+            </nav>
+
+            <div class="search col-lg-4 col-md-4 col-xs-12">
+                <form id="dummySearch">
+                    <label for="search"></label>
+                    <input id="search" name="serach" type="text" placeholder="Not That Dummy Search">
+                    <i class="fa fa-search"></i>
+                </form>
+                <script>
+                $(function(){
+                    $('#dummySearch').submit(function(e) {
+                        e.preventDefault();
+                        keyword = $('#search').val();
+                        url = 'https://www.google.com.hk/search?q=site%3Aunifreak.github.io+' + keyword;
+                        location.href = url;
+                    })
+                })
+                </script>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <div class="container">
+        <div class="row">
+            <div id="markdown-container" class="col-lg-9">
+                <header>
+                    <p id="postTitle">Test Post; Please Ignore</p>
+                    
+                    <ul class="tags clearfix">
+                        
+                        <li><i class="fa fa-tag"></i> wamp</li>
+                        
+                        <li><i class="fa fa-tag"></i> tuts</li>
+                        
+                    </ul>
+                    
+                    <p id="postMeta">posted on 20 Apr 2016 under category <a href="http://localhost:4000/category/">translation</a></p>
+
+                </header>
+
+                <p><em>原回答在 2014/04/30 由 <code>user256743</code> 发表于 <a href="http://superuser.com/questions/748117/how-to-manually-install-apache-php-and-mysql-on-windows">http://superuser.com/questions/748117/how-to-manually-install-apache-php-and-mysql-on-windows</a></em></p>
+
+<h1 id="hello">hello</h1>
+
+<ol>
+<li>下载 &nbsp;&nbsp;<a href="http://www.apachelounge.com/download/VC11/binaries/httpd-2.4.20-win32-VC11.zip" title="httpd-2.4.20-win32-VC11.zip ">Apache</a></li>
+<li>下载 &nbsp;&nbsp;<a href="http://windows.php.net/downloads/releases/php-5.6.20-Win32-VC11-x86.zip" title="php-5.6.20-Win32-VC11-x86.zip">PHP</a></li>
+<li>下载 &nbsp;&nbsp;<a href="https://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-web-community-5.6.27.0.msi" title="mysql-installer-web-community-5.6.27.0.msi">MySQL</a></li>
+<li>下载 &nbsp;&nbsp;<a href="https://www.microsoft.com/en-us/download/details.aspx?id=30679" title="vs download site">VS2012</a>[可选]</li>
+</ol>
+
+            </div>
+
+            <div id="markdown-outline" class="col-lg-3">
+            </div>
+
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'unifreak-github';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+    
+<footer id="l-footer">
+    <div class="container">
+        <div class="row">
+            <div id="contact" class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-9">
+                <h3>CONTACT</h3>
+                <div class="row">
+                    <address id="address" class="col-lg-6 col-md-6 col-sm-6">
+                        China Beijing Beijing<br>
+                        ChaoYang, 0<br>
+                        AnHuiLi<br>
+                        Paul Walko<br>
+                    </address>
+
+                    <ul class="col-lg-6 col-md-6 col-sm-6">
+                        <li class="qq"><i class="fa fa-qq"></i> &nbsp;&nbsp;744910240</li>
+                        <li class="email"><i class="fa fa-envelope"></i> <a href="mailto:fanghao90s@gmail.com"> &nbsp;&nbsp;fanghao90s@gmail.com</a></li>
+                        <li class="tel"><i class="fa fa-mobile"></i> <a href="tel:15671542698">&nbsp;&nbsp; 5025096242</a></li>
+                        <li class="github"><i class="fa fa-github"></i> <a href="http://www.github.com/UniFreak"> &nbsp;&nbsp;http://www.github.com/UniFreak</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="rss" class="col-lg-2 col-md-2 col-sm-2">
+                    <h3>SUBSCRIBE<br>
+                    via</h3>
+                <a href="feed.xml">
+                    <i class="rss fa fa-rss-square"></i>
+                </a>
+            </div>
+        </div>
+
+        <p id="legal">
+            Copyright (c) 2015 paulwalko | Powered by <a href="http://jekyllrb.com">Jekyll</a> &amp; <a href="http://github.com">GitHub</a> | designed &amp; build by <a href="http://unifreak.github.io">UniFreak</a>
+        </p>
+    </div>
+</footer>
+
+<script type="text/javascript" src="http://localhost:4000/javascripts/base.js"></script>
+
+
+<!-- 百度统计 -->
+<script type="text/javascript" src="http://localhost:4000/javascripts/baidu_statistics.js"></script>
+
+
+    <script type="text/javascript" src="http://localhost:4000/javascripts/markdownreader.js"></script>
+</body>
+</html>

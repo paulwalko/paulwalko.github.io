@@ -1,39 +1,51 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'jekyll serve'. If you change this file, please restart the server process.
+highlighter: pygments
 
-# Site settings
-title: Spaghetti-san Blog
-email: spaghettisan@yahoo.com
-description: > # this means to ignore newlines until "baseurl:"
-  All about Spaghetti-san Project
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://spaghetti.ga" # the base hostname & protocol for your site
-twitter_username: axlyody
-github_username:  spaghetti-san
-facebook_username:  axlyody
+markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
 
-# Gems
-gems: 
-- jekyll-archives
-- jekyll-paginate
+gems: [jekyll-paginate]
+paginate: 7
+paginate_path: "page:num"
+layout: post
+permalink: /:categories/:title
+excerpt_separator: "[-----]"
 
-# Config
-paginate: 5
-paginate_path: "page/:num"
-# Build settings
-markdown: kramdown
+# mode: dev
+mode: product
+url: http://localhost:4000/
+devurl: http://localhost:4000/
+name: Paul Walko
+title: Paul Walko
+description: "Paul Walko's personal website"
 
-# Archive
-jekyll-archives:
-  enabled: []
-  layout: 'archive'
-  permalinks:
-    year: '/:year/'
-    month: '/:year/:month/'
-    day: '/:year/:month/:day/'
-    tag: '/tag/:name/'
-    category: '/category/:name/'
+my:
+    displayName: Paul Walko
+    realName: Paul Walko
+    jobTitle: "Student at Virgina Tech"
+    contact:
+        email: paulsw.pw@gmail.com
+        github: https://www.github.com/paulwalko
+        google-plus: http://www.google.com/+paulwalko
+        address:
+            country: United States
+    skills:
+        security: ["Wireshark", "IDA", "Ollydebug"]
+        coding: ["C", "C++", "Python", "Java", "bash", "HTML"]
+        tools: ["Linux"]
+
+collections:
+    qqGroupGuide:
+        output: true
+
+defaults:
+  - scope:
+        path: ""
+        type: "posts"
+    values:
+        excerpt: "{{ page.content }} | slice: 0 300"
+  - scope:
+        path: ""
+        type: "qqGroupGuide"
+    values:
+        layout: markdownreader_bare

@@ -1,173 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     
     <url>
-      <loc>http://spaghetti.ga/uncategorized/2015/12/18/my-first-post.html</loc>
-      
-        <lastmod>2015-12-18T12:00:00-05:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
+        <loc>http://localhost:4000//writeup/test_post</loc>
+        <lastmod>2016-06-14T21:53:10-04:00</lastmod>
+        <changefreq>weekly</changefreq>
     </url>
     
-  
-    
-    <url>
-      <loc>http://spaghetti.ga/jekyll/update/2013/11/25/welcome-to-jekyll.html</loc>
-      
-        <lastmod>2013-11-25T11:58:04-05:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-
-  
     
     
-
-    
-    <url>
-      <loc>http://spaghetti.ga</loc>
-      
-        <lastmod>2016-06-09T17:20:14-04:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.3</priority>
-      
-    </url>
-    
-  
     
     
-
-    
-    <url>
-      <loc>http://spaghetti.ga/about.html</loc>
-      
-        <lastmod>2016-06-09T17:20:14-04:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.3</priority>
-      
-    </url>
-    
-  
     
     
-
-    
-    <url>
-      <loc>http://spaghetti.ga/archive.html</loc>
-      
-        <lastmod>2016-06-09T17:20:14-04:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.3</priority>
-      
-    </url>
-    
-  
     
     
-
     
-  
-    
-    
-
-    
-  
-    
-    
-
-    
-  
-    
-    
-
-    
-    <url>
-      <loc>http://spaghetti.ga</loc>
-      
-        <lastmod>2016-06-09T17:20:14-04:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.3</priority>
-      
-    </url>
-    
-  
-    
-    
-
-    
-  
-    
-    
-
-    
-    <url>
-      <loc>http://spaghetti.ga/project.html</loc>
-      
-        <lastmod>2016-06-09T17:20:14-04:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.3</priority>
-      
-    </url>
-    
-  
-    
-    
-
-    
-  
-    
-    
-
-    
-    <url>
-      <loc>http://spaghetti.ga/tags/</loc>
-      
-        <lastmod>2016-06-09T17:20:14-04:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.3</priority>
-      
-    </url>
-    
-  
-
-  
-    
-  
 </urlset>
