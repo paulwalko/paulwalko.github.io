@@ -1,5 +1,4 @@
-http://paul.walko.org//writeup/nebula_exploit_exercises
-http://paul.walko.org//writeup/test_post
+https://paul.walko.org//writeup/nebula_exploit_exercises
 
 
 

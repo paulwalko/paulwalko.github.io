@@ -5,14 +5,8 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     
     <url>
-        <loc>http://paul.walko.org//writeup/nebula_exploit_exercises</loc>
-        <lastmod>2016-06-15T01:05:43-04:00</lastmod>
-        <changefreq>weekly</changefreq>
-    </url>
-    
-    <url>
-        <loc>http://paul.walko.org//writeup/test_post</loc>
-        <lastmod>2016-06-15T01:05:43-04:00</lastmod>
+        <loc>https://paul.walko.org//writeup/nebula_exploit_exercises</loc>
+        <lastmod>2016-06-15T01:37:41-04:00</lastmod>
         <changefreq>weekly</changefreq>
     </url>
     
