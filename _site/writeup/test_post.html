@@ -5,6 +5,11 @@
 <html>
 <head>
     <meta charset="utf-8">
+<script type="text/javascript">
+    var host = "paul.walko.org";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+        window.location.protocol = "https";
+</script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="This is an excerpt; please ignore">
@@ -34,6 +39,10 @@
 <link rel="stylesheet" type="text/css" href="http://paul.walko.org/stylesheets/simplePagination.css">
 
 <script type="text/javascript" src="http://paul.walko.org/javascripts/jquery.js"></script>
+
+
+
+<link rel="canonical" href=" { { site.url } }{ { page.url } }" />
 
 <!--[if lt IE 9]>
 <script src="http://paul.walko.org/javascripts/html5shiv.js"></script>
@@ -85,7 +94,7 @@
                     $('#dummySearch').submit(function(e) {
                         e.preventDefault();
                         keyword = $('#search').val();
-                        url = 'https://www.google.com.hk/search?q=site%3Apaul.walko.org+' + keyword;
+                        url = 'https://www.google.com/search?q=site%3Apaul.walko.org+' + keyword;
                         location.href = url;
                     })
                 })
