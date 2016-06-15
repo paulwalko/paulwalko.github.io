@@ -1,5 +1,5 @@
 {% if site.mode == 'dev' %}
-{% assign crturl = site.devurl %}
+{% assign crturl = site.devurl/ %}
 {% else %}
-{% assign crturl = include.url %}
+{% assign crturl = site.url %}
 {% endif %}
