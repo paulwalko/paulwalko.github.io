@@ -211,6 +211,7 @@ pre,
 samp {
   font-family: monospace, monospace;
   font-size: 1em;
+  background-color:rgba(192,192,192,0.6);
 }
 
 /* Forms
