@@ -10,7 +10,8 @@ excerpt_separator: "[-----]"
 
 # mode: dev
 mode: product
-url: http://paul.walko.org/
+url: https://paul.walko.org/
+enforce_ssl: paul.walko.org/
 devurl: http://localhost:4000/
 name: Paul Walko
 title: Paul Walko
