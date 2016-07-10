@@ -1,5 +1,6 @@
-http://paul.walko.org//writeup/stapler_walkthough
-http://paul.walko.org//writeup/nebula_exploit_exercises
+https://paul.walko.org//writeup/violator_walkthrough
+https://paul.walko.org//writeup/stapler_walkthough
+https://paul.walko.org//writeup/nebula_exploit_exercises
 
 
 
