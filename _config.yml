@@ -5,7 +5,8 @@ gems: [jekyll-paginate]
 paginate: 7
 paginate_path: "page:num"
 layout: post
-permalink: /:categories/:title
+#permalink: /:categories/:title
+permalink: pretty
 excerpt_separator: "[-----]"
 
 #mode: dev
