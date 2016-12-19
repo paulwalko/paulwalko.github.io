@@ -8,7 +8,7 @@ layout: post
 permalink: /:categories/:title
 excerpt_separator: "[-----]"
 
-# mode: dev
+#mode: dev
 mode: product
 url: https://paul.walko.org/
 enforce_ssl: paul.walko.org/
