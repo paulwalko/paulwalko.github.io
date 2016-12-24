@@ -8,8 +8,8 @@ layout: post
 permalink: pretty
 excerpt_separator: "[-----]"
 
-mode: dev
-#mode: product
+#mode: dev
+mode: product
 url: https://paul.walko.org/
 enforce_ssl: paul.walko.org/
 devurl: http://localhost:4000/
