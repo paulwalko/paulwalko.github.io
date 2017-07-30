@@ -1,0 +1,22 @@
+body {
+	background: #40453F;
+}
+
+.top {
+	text-align: center;
+}
+
+.content {
+	width: 50%;
+	text-align: left;
+	margin: auto;
+}
+
+ul {
+	list-style-type: none;
+}
+
+a {
+	color: #7B9EB5;
+	text-decoration: none;
+}
