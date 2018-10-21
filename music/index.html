@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Paul Walko - MUS 3064 Midterm Project</title>
+    </head>
+    <body>
+        <input type="checkbox" id="pineswamp_at"> <br />
+        <input type="checkbox" id="pilotmtn"> <br />
+        <input type="checkbox" id="huck_roundabouts_bridge"> <br />
+        <br />
+        <input onclick="toggle_music()" value="Play"></input> <br />
+
+        <script>
+            let gpx = ['pineswamp_at', 'pilotmtn', 'huck_roundabouts_bridge'];
+            let gpx_content = [];
+
+            function setup() {
+                // Create tones for all tunes
+                for (let i = 0; i < gpx.length; i++) {
+                    let xmlhttp = new XMLHttpRequest();
+                    xmlhttp.open('GET', 'gpx/' + gpx[i] + '.gpx', false);
+                    xmlhttp.send();
+                    gpx_content.push(xmlhttp.responseText); 
+                }
+                console.log(gpx_content[0]);
+            }
+            
+            function toggle_music() {
+                if document.getElementById("pineswamp_at").checked === true) {
+                    // Play pineswamp (or restart)
+                }
+                if document.getElementById("pilotmtn").checked === true
+
+            }
+
+            function play() {
+            
+            }
+
+            function stop() {
+            
+            }
+
+            setup();
+        </script>
+    </body>
+</html>
