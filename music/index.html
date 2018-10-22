@@ -1,47 +1,85 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset='UTF-8'>
         <title>Paul Walko - MUS 3064 Midterm Project</title>
+        <script type='text/javascript' src='js/distanceFunction.js'></script>
+        <script type='text/javascript' src='https://tonejs.github.io/build/Tone.min.js'></script>
     </head>
     <body>
-        <input type="checkbox" id="pineswamp_at"> <br />
-        <input type="checkbox" id="pilotmtn"> <br />
-        <input type="checkbox" id="huck_roundabouts_bridge"> <br />
+        Select 1 or more tracks to play, then press 'Play':<br />
         <br />
-        <input onclick="toggle_music()" value="Play"></input> <br />
+        <input type='checkbox' id='pineswamp_at'>Appalachain Trail</input> <br />
+        <input type='checkbox' id='pilotmtn'>Pilot Mountain</input> <br />
+        <input type='checkbox' id='huck_roundabouts_bridge'>Huckleberry Trail</input> <br />
+        <br />
+        <button id='PlayPause'/>Play/Pause</button> <br />
 
         <script>
-            let gpx = ['pineswamp_at', 'pilotmtn', 'huck_roundabouts_bridge'];
-            let gpx_content = [];
+            let tracks = {'pineswamp_at': {'counter': 0, 'bpm': 0, 'content': []},
+                          'pilotmtn': {'counter': 0, 'bpm': 0, 'content': []},
+                          'huck_roundabouts_bridge': {'counter': 0, 'bpm': 0, 'content': []}};
+            let bassSynth;
 
-            function setup() {
-                // Create tones for all tunes
-                for (let i = 0; i < gpx.length; i++) {
+            function mySetup() {
+                // Process track data
+                for (track in tracks) {
+                    // Load tracks
                     let xmlhttp = new XMLHttpRequest();
-                    xmlhttp.open('GET', 'gpx/' + gpx[i] + '.gpx', false);
+                    xmlhttp.open('GET', 'gpx/' + track + '.xml', false);
                     xmlhttp.send();
-                    gpx_content.push(xmlhttp.responseText); 
+                    // Parse tracks
+                    let points = xmlhttp.responseXML.getElementsByTagName('trkpt');
+                    for (let j = 1; j < points.length; j++) {
+                        // Get distance since last point
+                        let prevlat = points[j - 1].attributes.lat.value;
+                        let prevlon = points[j - 1].attributes.lon.value;
+                        let lat = points[j].attributes.lat.value;
+                        let lon = points[j].attributes.lon.value;
+                        let distance = getDistance(prevlat, prevlon, lat, lon, 'M');
+                        // Time since last track 
+                        let prevtime = (new Date(points[j - 1]
+                            .children[1].textContent)).getTime() / 3600000;
+                        let time = (new Date(points[j].children[1]
+                            .textContent)).getTime() / 3600000;
+                        time = time - prevtime;
+                        // Get speed & elevation then add to dict
+                        //// Avg speed is about 10 MPH, so to make this usable
+                        ////  everything is scaled by x10, which is used as the
+                        ////  BPM
+                        let speed = (distance / time) * 10;
+                        let elevation = points[j].children[0].textContent;
+                        // TODO calculate direction
+                        tracks[track]['content'].push({/*'direction': direction, */
+                            'speed': speed, 'elevation': elevation});
+                    }
+                    // This should always be true but it doesn't hurt to make sure
+                    if (tracks[track]['content'].length > 0) {
+                        tracks[track]['bpm'] = tracks[track]['speed']
+                    }
                 }
-                console.log(gpx_content[0]);
+
+                // Overall BPM is 200, but the actual tracks don't always play on
+                //  every beat.
+                // For example with a 150 BPM tune, the counter for that tune
+                //  plays a beat every 200 / 150 beats.
+                Tone.Transport.bpm.value = 140;
+                loopBeat = new Tone.Loop(beats, '16n');
+                loopBeat.start(0);
+
+                bassSynth = new Tone.MembraneSynth().toMaster();
+                //Tone.Transport.start();
+
+                document.querySelector("#PlayPause").addEventListener("click", function(){
+                    Tone.Transport.toggle();
+                });
+            }
+
+            function beats(time) {
+                bassSynth.triggerAttackRelease('c1', '8n', time);
             }
             
-            function toggle_music() {
-                if document.getElementById("pineswamp_at").checked === true) {
-                    // Play pineswamp (or restart)
-                }
-                if document.getElementById("pilotmtn").checked === true
-
-            }
-
-            function play() {
-            
-            }
-
-            function stop() {
-            
-            }
-
-            setup();
+            window.addEventListener('load', mySetup);
         </script>
     </body>
 </html>
