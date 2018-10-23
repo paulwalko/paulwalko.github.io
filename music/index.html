@@ -3,23 +3,25 @@
     <head>
         <meta charset='UTF-8'>
         <title>Paul Walko - MUS 3064 Midterm Project</title>
-        <script type='text/javascript' src='js/distanceFunction.js'></script>
+        <script type='text/javascript' src='js/helperFunctions.js'></script>
         <script type='text/javascript' src='https://tonejs.github.io/build/Tone.min.js'></script>
     </head>
     <body>
-        Select 1 or more tracks to play, then press 'Play':<br />
+        Select 1 or more tracks to play, then press 'Play/Pause':<br />
         <br />
-        <input type='checkbox' id='pineswamp_at'>Appalachain Trail</input> <br />
+        <input type='checkbox' id='at'>Appalachain Trail</input> <br />
         <input type='checkbox' id='pilotmtn'>Pilot Mountain</input> <br />
-        <input type='checkbox' id='huck_roundabouts_bridge'>Huckleberry Trail</input> <br />
+        <input type='checkbox' id='huck'>Huckleberry Trail</input> <br />
         <br />
         <button id='PlayPause'/>Play/Pause</button> <br />
 
         <script>
-            let tracks = {'pineswamp_at': {'counter': 0, 'bpm': 0, 'content': []},
-                          'pilotmtn': {'counter': 0, 'bpm': 0, 'content': []},
-                          'huck_roundabouts_bridge': {'counter': 0, 'bpm': 0, 'content': []}};
-            let bassSynth;
+            let hz_lookup = {'2n': 120, '4n': 60, '8n': 30, '16n': 15, '32n': 7.5};
+            let tracks = {'at': {'bpm_counter': 0, 'point_counter': 0, 'bpm': 0, 'frequency': 0, 'content': [], 'synth': new Tone.PolySynth(3).toMaster(), 'duration': '32n'},
+                          'pilotmtn': {'bpm_counter': 0, 'point_counter': 0, 'bpm': 0, 'frequency': 0, 'content': [], 'synth': new Tone.MembraneSynth().toMaster(), 'duration': '4n'},
+                          'huck': {'bpm_counter': 0, 'point_counter': 0, 'bpm': 0, 'frequency': 0, 'content': [], 'synth': new Tone.DuoSynth().toMaster(), 'duration': '8n'}};
+            // Cycles trough different bpms every 5 seconds
+            let cycle_counter = 0;
 
             function mySetup() {
                 // Process track data
@@ -45,17 +47,18 @@
                         time = time - prevtime;
                         // Get speed & elevation then add to dict
                         //// Avg speed is about 10 MPH, so to make this usable
-                        ////  everything is scaled by x10, which is used as the
+                        ////  everything is scaled by x20, which is used as the
                         ////  BPM
-                        let speed = (distance / time) * 10;
-                        let elevation = points[j].children[0].textContent;
+                        let speed = scale(distance / time, 0, 50, 100, 200);
+                        let elevation = scale(parseInt(points[j].children[0].textContent), 500, 700, 3000, 4000);
                         // TODO calculate direction
                         tracks[track]['content'].push({/*'direction': direction, */
                             'speed': speed, 'elevation': elevation});
                     }
                     // This should always be true but it doesn't hurt to make sure
                     if (tracks[track]['content'].length > 0) {
-                        tracks[track]['bpm'] = tracks[track]['speed']
+                        tracks[track]['bpm'] = tracks[track]['content'][0]['speed'];
+                        tracks[track]['frequency'] = tracks[track]['content'][0]['elevation'];
                     }
                 }
 
@@ -63,11 +66,11 @@
                 //  every beat.
                 // For example with a 150 BPM tune, the counter for that tune
                 //  plays a beat every 200 / 150 beats.
-                Tone.Transport.bpm.value = 140;
+                Tone.Transport.bpm.value = 300;
                 loopBeat = new Tone.Loop(beats, '16n');
                 loopBeat.start(0);
 
-                bassSynth = new Tone.MembraneSynth().toMaster();
+                //bassSynth = new Tone.MembraneSynth().toMaster();
                 //Tone.Transport.start();
 
                 document.querySelector("#PlayPause").addEventListener("click", function(){
@@ -76,7 +79,32 @@
             }
 
             function beats(time) {
-                bassSynth.triggerAttackRelease('c1', '8n', time);
+                // Update 5 second cycle counter
+                let seconds = 1;
+                cycle_counter = Math.floor((cycle_counter + 1) % Math.round(Tone.Transport.bpm.value / hz_lookup['16n'] * seconds));
+
+                
+                for (track in tracks) {
+                    // Don't play track if checkbox is unchecked
+                    if (document.getElementById(track).checked == false) {
+                        continue;
+                    }
+
+                    let track_data = tracks[track];
+                    // Play each synth if bpm counter is ready
+                    if (track_data['bpm_counter'] == 0) {
+                        track_data['synth'].triggerAttackRelease(track['frequency'], track_data['duration'], time, 0.8);
+                    }
+                    // Update each bpm counter
+                    tracks[track]['bpm_counter'] = (track_data['bpm_counter'] + 1) % Math.round(Tone.Transport.bpm.value / track_data['bpm']);
+
+                    // Indicates 5 seconds has passed, so cycle to next point in data
+                    if (cycle_counter == 0) {
+                        tracks[track]['point_counter'] = (track_data['point_counter'] + 1) % track_data['content'].length;
+                        tracks[track]['bpm'] = track_data['content'][tracks[track]['point_counter']]['speed'];
+                        tracks[track]['frequency'] = track_data['content'][tracks[track]['point_counter']]['elevation'];
+                    }
+                }
             }
             
             window.addEventListener('load', mySetup);

@@ -42,3 +42,8 @@ function getDistance(lat1, lon1, lat2, lon2, unit) {
 	if (unit=="N") { dist = dist * 0.8684 }
 	return dist
 }
+
+// https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers
+function scale(num, in_min, in_max, out_min, out_max) {
+    return (num - in_min ) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
