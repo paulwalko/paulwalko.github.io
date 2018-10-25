@@ -50,7 +50,8 @@
                         ////  everything is scaled by x20, which is used as the
                         ////  BPM
                         let speed = scale(distance / time, 0, 50, 100, 200);
-                        let elevation = scale(parseInt(points[j].children[0].textContent), 500, 700, 3000, 4000);
+                        //let elevation = scale(parseInt(points[j].children[0].textContent), 500, 700, 3000, 4000);
+                        let elevation = Math.floor(scale(parseInt(points[j].children[0].textContent), 500, 700, 100, 110));
                         // TODO calculate direction
                         tracks[track]['content'].push({/*'direction': direction, */
                             'speed': speed, 'elevation': elevation});
@@ -93,13 +94,15 @@
                     let track_data = tracks[track];
                     // Play each synth if bpm counter is ready
                     if (track_data['bpm_counter'] == 0) {
-                        track_data['synth'].triggerAttackRelease(track['frequency'], track_data['duration'], time, 0.8);
+                        track_data['synth'].triggerAttackRelease(Tone.Frequency(track['frequency'], 'midi'), track_data['duration'], time, 0.8);
                     }
                     // Update each bpm counter
                     tracks[track]['bpm_counter'] = (track_data['bpm_counter'] + 1) % Math.round(Tone.Transport.bpm.value / track_data['bpm']);
 
                     // Indicates 5 seconds has passed, so cycle to next point in data
                     if (cycle_counter == 0) {
+			console.log(track + ' BPM: ' + track_data['bpm']);
+			console.log(track + ' MIDI: ' + track_data['frequency']);
                         tracks[track]['point_counter'] = (track_data['point_counter'] + 1) % track_data['content'].length;
                         tracks[track]['bpm'] = track_data['content'][tracks[track]['point_counter']]['speed'];
                         tracks[track]['frequency'] = track_data['content'][tracks[track]['point_counter']]['elevation'];
