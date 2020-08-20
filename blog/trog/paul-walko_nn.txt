@@ -1,0 +1,11 @@
+Writing a neural network to write a TROG article instead of writing a TROG article: A Proposal
+Paul Walko
+
+
+While trying to come up with an idea for this year's TROG I wondering if I could just make a computer do it for me; turns out that's a lot of work so here's a proposal instead.
+
+There are about 95 TROGs total on sivtac with each one containing 30-80 pages. Using the low end of this, 30, on average this puts each TROG at somewhere around 15,000 words per TROG or 1.5 million words total. I've never worked with neural networks, but based on some quick google searches this seems like it should be more than enough content to do something. I anticipate writing the actual neural network being fairly easy compared to organizing all the TROGs.
+
+There's a couple major blockers here: Transcribing all the TROGs where either you can't copy/paste text or where there's issues selecting text, figuring out if this is even feasible, and determining a name for the neural net itself. Let's say 1/3 of all articles need to be transcribed, so 1.5m/3 gives us 500k words. Assuming typing at 60wpm this gives us about 8300 hours. For reference, there's 8760 hours in 1 year. Clearly we need a better solution here such adding "transcribe 5 TROG articles" to the membership requirements, some really good OCR program to extract the text, or find some people really interested in helping out. We may also be able to get by without doing all this manual labor, it's hard to say though.
+
+Once the neural net is finally built, I propose naming it A.I. Cartwrite. In addition to this, I wonder if the article would count as the author of the neural net or not? Assuming we have success with this, what's next? Trip quotes? Songs? Nicknames?
