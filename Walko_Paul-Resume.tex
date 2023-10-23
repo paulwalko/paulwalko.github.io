@@ -107,44 +107,27 @@
 
 \begin{center}
     \textbf{\Huge \scshape Paul Walko} \\ \vspace{1pt}
-    \small (502) 509-6242 $|$ \href{mailto:pwalko@vt.edu}{pwalko@vt.edu} $|$ 
+    \small (502) 509-6242 $|$ \href{mailto:paul@bigcavemaps.com}{paul@bigcavemaps.com} $|$ 
     \href{https://paul.walko.org}{https://paul.walko.org} $|$
     \href{https://git.seaturtle.pw/pew}{git.seaturtle.pw/pew} $|$ \href{https://github.com/paulwalko}{github.com/paulwalko}
 \end{center}
 
 
-%-----------EDUCATION-----------
-\section{Education}
+
+
+
+%-----------EMPLOYMENT-----------
+\section{Employment}
   \resumeSubHeadingListStart
-    \resumeSubheading
-      {Virginia Tech}{Blacksburg, VA}
-      {Bachelor of Science in Computer Science; Minor in Cyber Security} {Aug. 2015 -- Dec. 2018}
-    \small{\item{
-   		\textbf{Languages/Tools}{: C, Python, Java, Bash, Git, Docker, Kubernetes, AWS, Jenkins} \\
-    }}
-  \resumeSubHeadingListEnd
-
-
-%-----------EXPERIENCE-----------
-\section{Experience}
-  \resumeSubHeadingListStart      
-  
-% -----------Multiple Positions Heading-----------
-%    \resumeSubSubheading
-%     {Software Engineer I}{Oct 2014 - Sep 2016}
-%     \resumeItemListStart
-%        \resumeItem{Apache Beam}
-%          {Apache Beam is a unified model for defining both batch and streaming data-parallel processing pipelines}
-%     \resumeItemListEnd
-%    \resumeSubHeadingListEnd
-%-------------------------------------------
-  
     \resumeSubheading
       {DevOps Engineer} {Aug. 2019 -- Present}
       {Ozmo, Inc}{Blacksburg, VA}
       \resumeItemListStart
-        \resumeItem{Improved code reliability with Continuous Integration testing}
-        \resumeItem{Built central monitoring stack with Grafana, ELK, Kafka, and helped ingest existing services alert on}
+	    \resumeItem{Built Observability stack with Grafana, OpenTelemetry, ELK, Kafka}
+      	\resumeItem{\textbf{AWS ECS/Faragte}: Helped migrate from Elasticbeanstalk}
+      	\resumeItem{\textbf{SOC 2}: Key component of SOC 2 Audit process}
+        \resumeItem{\textbf{CI Testing}: Significantly improved PR turnaround time and developer happiness with automated testing}
+        \resumeItem{\textbf{OpenVPN Cloud}: Implemented always on split-tunnel VPN to support remote work}
         \resumeItem{Helped build event-driven search service in AWS: \\ \href{https://ozmo.com/insights/building-a-world-wide-real-time-search-service/}{https://ozmo.com/insights/building-a-world-wide-real-time-search-service}}
       \resumeItemListEnd
 
@@ -164,51 +147,83 @@
         \resumeItem{Intercepted data from keyboards, mice, and other BLE devices}
         \resumeItem{Created Bluetooth pen-testing device with Ubertooth One and worked with devs on IRC}
       \resumeItemListEnd
-
-    \resumeSubheading
-      {S.W.A.T Technician} {Aug. 2016 -- May. 2017}
-      {Virginia Tech College of Engineering}{Blacksburg, VA}
-      \resumeItemListStart
-        \resumeItem{Assisted customers with software/OS installation}
-        \resumeItem{Diagnosed installation and network issues}
-      \resumeItemListEnd
-
   \resumeSubHeadingListEnd
 
 
 %-----------PROJECTS-----------
 \section{Projects}
     \resumeSubHeadingListStart
-      \small{\item{\textbf{GitHub}{: \href{https://github.com/paulwalko}{github.com/paulwalko}}}}
+      \small{\item{\textbf{GitHub}{: \href{https://github.com/paulwalko}{github.com/paulwalko}}
+      \textbf{Gitea}{: \href{https://git.seaturtle.pw/pew}{git.seaturtle.pw/pew}}}}
       
       \resumeProjectHeading
-        {\textbf{Virginia Tech Linux/Unix Users Group (VTLUUG)} $|$ \emph{\href{https://vtluug.org/}{vtluug.org}, \href{https://github.com/vtluug}{github.com/vtluug}}} {2016 - Present}
-        \resumeItemListStart
-          \resumeItem{\textbf{FreeIPA/LDAP}{: Maintain accounts for email, shell access, and webserver.}}
-          \resumeItem{\textbf{\href{https://vtluug.org/wiki/Infrastructure}{Rebuilt Infrastructure}}{: Updated services to deploy with Ansible and run all services with Docker.}}
-          \resumeItem{\textbf{Organized funds}{: Obtained \$1300 for new servers and equipment; oversaw purchasing additional components.}}
-        \resumeItemListEnd
-        
-      \resumeProjectHeading
-        {\textbf{Outdoor Club at Virginia Tech (OCVT)} $|$ \emph{\href{https://ocvt.club/}{ocvt.club}, \href{https://github.com/ocvt}{github.com/ocvt}}} {2017 - Present}
-        \resumeItemListStart
-          \resumeItem{\textbf{\href{https://github.com/ocvt/dolabra}{Dolabra}}{: Built backend API in Golang + front-end in plain HTML/JavaScript. Used Open-ID Connect for auth, Stripe for payments, and Docker for testing and deployment in AWS.}}
-          \resumeItem{\textbf{Appalachian Trail Maintenance}{: Regularly clear trail of trees, brush, and clean shelters.}}
-        \resumeItemListEnd
-        
-          
+      	{\textbf{Self-Hosted Services}}{}
+      	\resumeItemListStart
+      	  \resumeItem{\textbf{Mastodon}{: \href{https://social.bigcavemaps.com}{social.bigcavemaps.com}}}
+      	  \resumeItem{\textbf{Geoserver/Leaflet/MapProxy}{: \href{https://bigcavemaps.com/lidar/blacksburg}{bigcavemaps.com/lidar/blacksburg}. Used to analyze lidar and find potential caves.}}
+      	  \resumeItem{\textbf{Cavepedia}: \href{https://git.seaturtle.pw/pew/cavepedia}{git.seaturtle.pw/pew/cavepedia}. Architected pipeline to import old document, perform OCR, analyze readability, and index into a fully offline searchable application for use in the field.}
+      	  \resumeItem{\textbf{Minio} (personal archive), \textbf{Gitea} (personal git)}
+      	\resumeItemListEnd
+      		     
       \resumeProjectHeading
         {\textbf{Free/Open Software Contributions}}{}
         \resumeItemListStart
+        \resumeItem{\textbf{2013 -- Present}{: Use and contribute to OpenStreetMap, especially not well known trails. \href{https://www.openstreetmap.org/user/pew9000}{openstreetmap.org/user/pew9000}.}}
           \resumeItem{\textbf{2019 -- Present}{: \href{https://archiveteam.org/}{Archive Team}: Help archive Internet services and manage massive amounts of data.}}
-          \resumeItem{\textbf{2013 -- Present}{: Use and contribute to \href{https://www.openstreetmap.org/user/pew9000}{OpenStreetMap}.}}
-          \resumeItem{\textbf{2011 -- 2015}{: Android mod testing/discussion; Helped test and provided feedback for new Linux Games.}}
         \resumeItemListEnd
-        
-      \resumeProjectHeading
-        {\textbf{Eagle Scout, Troop 306}} {2013}
-    \resumeSubHeadingListEnd
 
+    \resumeSubHeadingListEnd
+    
+%-----------ORGANIZATIONS-----------
+\section{Organizations}
+	\resumeSubHeadingListStart
+	      \resumeSubheading
+	      {\textbf{VPI Cave Club} $|$ \emph{\href{https://vpicave.club}{vpicave.club}}}{2020 - Present}{Student Grotto of the National Speleological Society (NSS)}{}
+
+	\resumeItemListStart
+	\resumeItem{\textbf{Survey/Cartography}{: Survey and map unexplored cave passage, including data entry and processing to create a finished map.}}
+	\resumeItem{\textbf{Training}{: Teach new members basic caving skills, including vertical competence when climbing or abseiling rope.}}
+	\resumeItem{\textbf{Events}{: Help organize regional caving events with 200+ attendees.}}
+	\resumeItemListEnd
+
+\resumeProjectHeading
+{\textbf{Virginia Tech Linux/Unix Users Group (VTLUUG)} $|$ \emph{\href{https://vtluug.org/}{vtluug.org}, \href{https://github.com/vtluug}{github.com/vtluug}}} {2016 - Present}
+\resumeItemListStart
+\resumeItem{\textbf{FreeIPA/LDAP}{: Maintain accounts for email, shell access, and webserver.}}
+\resumeItem{\textbf{\href{https://vtluug.org/wiki/Infrastructure}{Rebuilt Infrastructure}}{: Updated services to deploy with Ansible and run all services with Docker.}}
+\resumeItem{\textbf{Organized funds}{: Obtained \$1300 for new servers and equipment; oversaw purchasing additional components.}}
+\resumeItemListEnd
+	
+      \resumeProjectHeading
+{\textbf{Outdoor Club at Virginia Tech (OCVT)} $|$ \emph{\href{https://ocvt.club/}{ocvt.club}, \href{https://github.com/ocvt}{github.com/ocvt}}} {2017 - Present}
+\resumeItemListStart
+\resumeItem{\textbf{\href{https://github.com/ocvt/dolabra}{Dolabra}}{: Built backend API in Golang and SQLite + front-end in plain HTML/JavaScript. Used Open-ID Connect for auth, Stripe for payments, and Docker for testing and deployment in AWS.}}
+\resumeItem{\textbf{Appalachian Trail Maintenance}{: Regularly clear trail of trees, brush, and clean shelters.}}
+\resumeItemListEnd
+	\resumeSubHeadingListEnd    
+	
+%-----------TALKS-----------
+\section{Talks}
+\resumeSubHeadingListStart
+\small{\item{
+		\textbf{Austrian Expedition to the Loser Plateau}{ (NSS Convention 2023)} \\
+		\textbf{Newberry's Cave Exploration}{ (NSS Convention 2022)} \\
+}}
+\resumeSubHeadingListEnd
+    
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+\resumeSubheading
+{Virginia Tech}{Blacksburg, VA}
+{Bachelor of Science in Computer Science; Minor in Cyber Security} {Aug. 2015 -- Dec. 2018}
+\small{\item{
+		\textbf{AWS}{: API Gateway, CloudFormation, CloudFront, CloudWatch, EC2, ECS/Fargate, ElasticSearch/OpenSearch, Lambda, RDS, Route53, RDS, S3} \\
+		\textbf{GIS Tools}{: QGIS, GDAL, Leaflet, GeoServer, MapProxy} \\
+		\textbf{Languages}{: Bash, C, Java, JavaScript/NodeJS, Python, Ruby} \\
+		\textbf{Tools}{: Docker, Google Workspace, Git, Grafana, Jenkins, Librato, Linux, NewRelic, Ubiquiti} \\
+}}
+\resumeSubHeadingListEnd
 
 %-------------------------------------------
 \end{document}
