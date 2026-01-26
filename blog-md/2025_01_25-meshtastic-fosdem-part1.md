@@ -16,10 +16,13 @@ With the hardware figured out, there are still quite a few additional pieces: ba
 
 Here's the finished node:
 
-<img width="685" height="405" alt="Finished node interior" src="https://github.com/user-attachments/assets/fadd337e-4e37-4bc6-8c52-3837a0a5e896" />
+<img width="682" height="512" alt="Finished node interior" src="https://github.com/user-attachments/assets/8be3c8b2-ce1b-4b8a-8f4a-0b2c4f96e022" />
+
 
 And the bottom, exposing the SCD41 CO2 sensor:
-<img width="685" height="405" alt="Node bottom" src="https://github.com/user-attachments/assets/6a6bfe42-4f41-4fe3-96da-0678165bb746" />
+
+<img width="512" height="682" alt="Node bottom" src="https://github.com/user-attachments/assets/77ae8596-d2ce-44c3-93d6-8a241d2b6be4" />
+
 
 
 Finally, at the 2025 NSS Convention we successfully deployed these, with a single gateway node to push data to MQTT. Unfortunately the data was lost to my the datacenter where my server was hosted getting evicted, but we will soon have more data with FOSDEM!
