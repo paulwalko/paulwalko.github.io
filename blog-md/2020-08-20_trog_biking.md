@@ -1,19 +1,20 @@
 # Building the Ultimate Cave Bike
-Written for the 2020 edition of the VPI Cave Club's Trogolodyte Newsletter
+Written for the 2021 edition of the VPI Cave Club's Trogolodyte Newsletter
 
 Do you ever wish you could bike to all your favorite caves instead of getting your car all dirty every time you go caving? Yeah? Me too. This is THE definitive guide to building a bike capable of handling any ride to a cave including all gear.
 
 Here are some specific features I'm looking for:
--  Steel frame (for a more comfortable ride vs aluminum)
--  Somewhat relaxed geometry good for endurance (not racing but also not full touring)
--  Front rack compatible
--  Rear rack compatible
--  Frame bag compatible
--  650b wheels for hills (bigger than typical mtb, smaller than typical road)
--  Good gearing for hills
--  Dynamo hub for charging 18650s
--  Disk brakes (for better breaking in bad weather)
--  Lots of holes for mounting things
+
+* Steel frame (for a more comfortable ride vs aluminum)
+* Somewhat relaxed geometry good for endurance (not racing but also not full touring)
+* Front rack compatible
+* Rear rack compatible
+* Frame bag compatible
+* 650b wheels for hills (bigger than typical mtb, smaller than typical road)
+* Good gearing for hills
+* Dynamo hub for charging 18650s
+* Disk brakes (for better breaking in bad weather)
+* Lots of holes for mounting things
 
 For you bike nerds out there this style might sound familiar; that's because it's essentially the same as old style randonneuring bikes, but unfortunately it's a fairly niche market now. Between the rear rack, front rack, and frame bag we should have enough space for everything.
 
@@ -30,16 +31,23 @@ The specific front and rear rack aren't super important as long as you can fit a
 
 I don't quite have everything yet but it's almost there! Here's my recommendation for splitting up gear:
 
-Front Bag
-- Boots, possibly sticking out the top
-- Phone (for strava)
-Left Pannier
-- Helmet
-- Food
-Right Pannier
-- Change of clothes
-- Water
-Strapped to top or rear rack:
-- cave bag
+**Front Bag**
+
+* Boots, possibly sticking out the top
+* Phone (for strava)
+
+**Left Pannier**
+
+* Helmet
+* Food
+
+**Right Pannier**
+
+* Change of clothes
+* Water
+
+**Strapped to top or rear rack:**
+
+* cave bag
 
 I haven't gotten a chance to test this out yet thanks to the Coronavirus, but look out for an update next year! 

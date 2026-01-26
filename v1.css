@@ -16,6 +16,10 @@ ul {
 	list-style-type: none;
 }
 
+ul li::before {
+	content: "- ";
+}
+
 a {
 	color: #7A5600;
 	text-decoration: none;
