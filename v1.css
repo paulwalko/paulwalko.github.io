@@ -12,6 +12,15 @@ body {
 	margin: auto;
 }
 
+@media (max-width: 768px) {
+	.content {
+		width: 90%;
+	}
+	.top {
+		padding: 0 10px;
+	}
+}
+
 ul {
 	list-style-type: none;
 }
