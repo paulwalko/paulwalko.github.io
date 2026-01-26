@@ -21,7 +21,7 @@ header='<!DOCTYPE html>
   <meta charset="utf-8">
 </head>
 <body>
-  <div class="content" style="padding-top: 20px;">
+  <div class="content blog">
 '
 
 # HTML template footer

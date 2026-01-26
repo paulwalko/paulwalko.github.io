@@ -6,7 +6,7 @@
   <meta charset="utf-8">
 </head>
 <body>
-  <div class="content" style="padding-top: 20px;">
+  <div class="content blog">
     <p><em>2025-01-25</em></p>
 <h1 id="air-quality-monitoring-at-fosdem-2026-part-1">Air Quality
 Monitoring at FOSDEM 2026: Part 1</h1>
@@ -49,11 +49,25 @@ pieces: battery, cables, on/off, and an enclosure. All of these are
 fairly simple by themselves, but combining all of them plus having to
 assemble 20 functional nodes quickly proved to be extremely time
 consuming.</p>
+<p>Here’s the finished node:</p>
+<p><img width="807" height="545" alt="Node interior" src="https://github.com/user-attachments/assets/1cbb9ef2-d73f-4e63-92ac-a2a36de456fd" /></p>
+<p>And the bottom, exposing the SCD41 CO2 sensor:</p>
+<p><img width="502" height="454" alt="Node bottom" src="https://github.com/user-attachments/assets/a159878a-4149-4186-a2d8-d8018320ce28" /></p>
 <p>Finally, at the 2025 NSS Convention we successfully deployed these,
 with a single gateway node to push data to MQTT. Unfortunately the data
 was lost to my the datacenter where my server was hosted getting
 evicted, but we will soon have more data with FOSDEM!</p>
 <h2 id="fosdem-2026-preparation">FOSDEM 2026 Preparation</h2>
+<p>Since the NSS Convention, Meshtastic has much better support for the
+SCD41 sensor. Though not yet merged, I have been running the feature
+branch on all 20 of my nodes with no issue. The hardest part here was
+ensuring all the nodes had their circuitpy boards disabled, plus
+ensuring all the configuration in Meshtastic is correct. For reasons I
+can’t explain, nodes seem to randomly pick some settings to apply and
+some to not. In any case, all the nodes are functional and viewable at
+https://mesh.caving.dev/public-dashboards/e2105032b16d47b9a42ee319d17e72b4.</p>
+<p>A preview of what’s to come:
+<img width="942" height="314" alt="CO2 Dashboard" src="https://github.com/user-attachments/assets/c8aebb1c-0ce9-4d8b-9c91-c6cca111881e" /></p>
 
   </div>
 </body>
