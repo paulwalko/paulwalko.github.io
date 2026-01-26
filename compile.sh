@@ -74,6 +74,14 @@ done < <(printf '%s\n' "${blog_entries[@]}" | sort -r)
 blog_section+='
     </ul>'
 
+# Update index.html - replace Blog section (before Self-Hosted Services)
+if grep -q '<h3 class="heading">Blog</h3>' index.html; then
+    perl -i -0pe "s|    <h3 class=\"heading\">Blog</h3>\n    <ul>.*?</ul>|$blog_section|s" index.html
+    echo "Updated Blog section in index.html"
+else
+    echo "Warning: Blog section not found in index.html"
+fi
+
 # Generate self-hosted section from self-hosted.md
 if [[ -f self-hosted.md ]]; then
     selfhosted_section='    <h3 class="heading">Self-Hosted Services</h3>
@@ -126,15 +134,6 @@ if [[ -f self-hosted.md ]]; then
     else
         echo "Warning: Self-Hosted Services section not found in index.html"
     fi
-fi
-
-# Update index.html - replace Blog section
-if grep -q '<h3 class="heading">Blog</h3>' index.html; then
-    # Use perl for multiline replacement
-    perl -i -0pe "s|    <h3 class=\"heading\">Blog</h3>\n    <ul>.*?</ul>|$blog_section|s" index.html
-    echo "Updated Blog section in index.html"
-else
-    echo "Warning: Blog section not found in index.html"
 fi
 
 echo "Done! HTML files are in the blog/ directory."
