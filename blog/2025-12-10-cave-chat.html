@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <title>AI Cave Chat</title>
+  <link rel="stylesheet" type="text/css" href="../v1.css" />
+  <meta charset="utf-8">
+</head>
+<body>
+  <div class="content blog">
+    <p><em>2025-12-10</em></p>
+<h1 id="ai-cave-chat">AI Cave Chat</h1>
+<p>The lastest attempt of mine to index and make cave documents
+accessible.</p>
+<h3 id="background">Background</h3>
+<p>This started as a Trog article in 2020:
+https://paul.walko.org/blog/2020-08-21_nn.html, shortly after which I
+created cavepedia v1 (https://git.seaturtle.pw/cavepedia/cavepedia).
+Cavepedia v1 uses go’s bleve search engine, and although it works for
+basic keyword matching and search, it left quite a lot to be
+desired.</p>
+<p>Cavepedia v1 can be found at https://trog.bigcavemaps.com/search.</p>
+<h2 id="overview">Overview</h2>
+<p>In May 2025 I got started with a S3 minio bucket and trigger to
+process documents as they are uploaded. From there, I stored document
+OCR data and search embeddings in a postgres database. Fast-forward to
+December, I added on a nice chat interface and really made it
+usable.</p>
+<p>The main goal of this is to ingest the hundreds, if not thousands, of
+caving documents in the NSS’s (https://caves.org) archives, dating back
+to the 1930s. Aside from historical documents, one of many future goals
+is indexing and analyzing survey notes to aide if cave exploration and
+discovery. See the issues tab at
+https://github.com/cavepedia/cavepediav2 for ongoing goals and
+discussion topics.</p>
+<p>This is still very much an ongoing project, with the next large
+milestone to better integrate with the NSS and align with them on how to
+expose all this data to its members.</p>
+<p>Here’s the architecture, copied from
+https://git.seaturtle.pw/cavepedia/cavepediav2:</p>
+<pre><code>                                    +------------------+
+                                    |     Auth0        |
+                                    |   (RBAC roles)   |
+                                    +--------+---------+
+                                             |
+                                             v
++------------------+              +----------+----------+
+|                  |   WebSocket  |                     |
+|     Browser      +-------------&gt;+    web/ (Next.js)   |
+|                  |              |    - CopilotKit UI  |
++------------------+              |    - Auth0 SSO      |
+                                  +----------+----------+
+                                             |
+                                             | AG-UI Protocol
+                                             v
+                                  +----------+----------+
+                                  |   web/agent/        |
+                                  |   (PydanticAI)      |
+                                  |   - Google Gemini   |
+                                  |   - x-user-roles    |
+                                  +----------+----------+
+                                             |
+                                             | Streamable HTTP
+                                             v
+                                  +----------+----------+
+                                  |      mcp/           |
+                                  |   (FastMCP Server)  |
+                                  |   - Semantic search |
+                                  |   - Role filtering  |
+                                  +----------+----------+
+                                             |
+                        +--------------------+--------------------+
+                        |                                         |
+                        v                                         v
+             +----------+----------+                   +----------+----------+
+             |     PostgreSQL      |                   |       Cohere        |
+             |     (pgvector)      |                   |    (Embeddings)     |
+             |   - embeddings      |                   +---------------------+
+             |   - metadata        |
+             |   - batches         |
+             +----------+----------+
+                        ^
+                        |
+             +----------+----------+
+             |      poller/        |
+             |  (Document Pipeline)|
+             |   - PDF splitting   |
+             |   - OCR (Claude)    |
+             |   - Embeddings      |
+             +----------+----------+
+                        |
+          +-------------+-------------+
+          |             |             |
+          v             v             v
+   +------+------+ +----+----+ +------+------+
+   | S3: import  | | S3: files| | S3: pages  |
+   +-------------+ +----------+ +-------------+</code></pre>
+
+  </div>
+</body>
+</html>
