@@ -14,6 +14,19 @@ At the time Meshtastic did not have support for the SCD41 sensor, so I was curio
 
 With the hardware figured out, there are still quite a few additional pieces: battery, cables, on/off, and an enclosure. All of these are fairly simple by themselves, but combining all of them plus having to assemble 20 functional nodes quickly proved to be extremely time consuming.
 
+Here's the finished node:
+
+<img width="685" height="405" alt="Finished node interior" src="https://github.com/user-attachments/assets/fadd337e-4e37-4bc6-8c52-3837a0a5e896" />
+
+And the bottom, exposing the SCD41 CO2 sensor:
+<img width="685" height="405" alt="Node bottom" src="https://github.com/user-attachments/assets/6a6bfe42-4f41-4fe3-96da-0678165bb746" />
+
+
 Finally, at the 2025 NSS Convention we successfully deployed these, with a single gateway node to push data to MQTT. Unfortunately the data was lost to my the datacenter where my server was hosted getting evicted, but we will soon have more data with FOSDEM!
 
 ## FOSDEM 2026 Preparation
+Since the NSS Convention, Meshtastic has much better support for the SCD41 sensor. Though not yet merged, I have been running the feature branch on all 20 of my nodes with no issue. The hardest part here was ensuring all the nodes had their circuitpy boards disabled, plus ensuring all the configuration in Meshtastic is correct. For reasons I can't explain, nodes seem to randomly pick some settings to apply and some to not. In any case, all the nodes are functional and viewable at https://mesh.caving.dev/public-dashboards/e2105032b16d47b9a42ee319d17e72b4.
+
+A preview of what's to come:
+<img width="942" height="314" alt="CO2 Dashboard" src="https://github.com/user-attachments/assets/c8aebb1c-0ce9-4d8b-9c91-c6cca111881e" />
+
