@@ -6,6 +6,3 @@ Browsertrix is a self-hosted web archival tool that, unlike tools like archive.i
 
 # social.bigcavemaps.com
 Self-hosted Mastodon instance
-
-# cavepedia-v2
-This is an in-progress upgrade from git.seaturtle.pw/pew/cavepedia, but with an upgraded search engine using vector embeddings instead of go's bleve engine. Unfortunately this was somewhat put on hold due to my colo provider getting evicted in September 2025. (protip: don't use the cheapest hosting possible!) 
