@@ -16,12 +16,12 @@ With the hardware figured out, there are still quite a few additional pieces: ba
 
 Here's the finished node:
 
-<img width="682" height="512" alt="Finished node interior" src="https://github.com/user-attachments/assets/8be3c8b2-ce1b-4b8a-8f4a-0b2c4f96e022" />
+<img width="807" height="545" alt="Node interior" src="https://github.com/user-attachments/assets/1cbb9ef2-d73f-4e63-92ac-a2a36de456fd" />
 
 
 And the bottom, exposing the SCD41 CO2 sensor:
 
-<img width="512" height="682" alt="Node bottom" src="https://github.com/user-attachments/assets/77ae8596-d2ce-44c3-93d6-8a241d2b6be4" />
+<img width="502" height="454" alt="Node bottom" src="https://github.com/user-attachments/assets/a159878a-4149-4186-a2d8-d8018320ce28" />
 
 
 
