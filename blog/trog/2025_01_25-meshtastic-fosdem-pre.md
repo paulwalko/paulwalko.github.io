@@ -1,6 +1,6 @@
 # Air Quality Monitoring at FOSDEM 2026: Part 1
 ### Background
-A few years ago at the 2022 NSS Convention, COVID was a big deal, and a large portion of attendees got covid as a result. Philip Balister (@Crofton) conveniently had his Aranet co2 sensor which he brought around to some sessions to gauge how bad ventilation is, and more often than not people were not aware of just how badly co2 readings can be in rooms that are filled with people.
+A few years ago at the 2022 NSS Convention, COVID was a big deal, and a large portion of attendees got covid as a result. Philip Balister (@Balister) conveniently had his Aranet co2 sensor which he brought around to some sessions to gauge how bad ventilation is, and more often than not people were not aware of just how badly co2 readings can be in rooms that are filled with people.
 
 Fast-forward to 2025, we discovered Meshtastic (https://meshtastic.org) and had the idea to place a meshtastic node in each session room, then remotely monitor and visualize measurements. There are several already existing sensors such as the Aranet, but nearly all require ble or wi-fi. Meshtastic allows us to not be reliant on already existing networking infrasturcture and has qutie a large range.
 
