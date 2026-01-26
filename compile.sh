@@ -45,8 +45,8 @@ for md_file in blog-md/*.md; do
     # Extract title from first line (remove # prefix if present)
     title=$(head -n 1 "$md_file" | sed 's/^#* *//')
 
-    # Convert markdown to HTML body using pandoc
-    body=$(pandoc "$md_file" -f markdown -t html)
+    # Convert markdown to HTML body using pandoc (autolink bare URLs)
+    body=$(pandoc "$md_file" -f markdown+autolink_bare_uris -t html)
 
     # Write the complete HTML file
     printf "$header" "$title" > "$html_file"

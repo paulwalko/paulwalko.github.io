@@ -18,22 +18,24 @@ conveniently had his Aranet co2 sensor which he brought around to some
 sessions to gauge how bad ventilation is, and more often than not people
 were not aware of just how badly co2 readings can be in rooms that are
 filled with people.</p>
-<p>Fast-forward to 2025, we discovered Meshtastic
-(https://meshtastic.org) and had the idea to place a meshtastic node in
-each session room, then remotely monitor and visualize measurements.
-There are several already existing sensors such as the Aranet, but
-nearly all require ble or wi-fi. Meshtastic allows us to not be reliant
-on already existing networking infrasturcture and has qutie a large
-range.</p>
+<p>Fast-forward to 2025, we discovered Meshtastic (<a
+href="https://meshtastic.org" class="uri">https://meshtastic.org</a>)
+and had the idea to place a meshtastic node in each session room, then
+remotely monitor and visualize measurements. There are several already
+existing sensors such as the Aranet, but nearly all require ble or
+wi-fi. Meshtastic allows us to not be reliant on already existing
+networking infrasturcture and has qutie a large range.</p>
 <h2 id="test-run-nss-convention-2025">Test Run: NSS Convention 2025</h2>
 <p>I belive we got started with Meshtastic in Fall 2024, primarily as a
 potential cave rescue comms system, but this quickly evolved into the
 CO2 monitoring project.</p>
-<p>Here’s the main repo for the node we made:
-https://github.com/paulwalko/faketec-co2. This is heavily based on
-gargomoma’s faketec v2 board, but instead of a screen we use a SCD41 CO2
-sensor. It just so happened that the screen pins and SCD41 pins lined up
-exactly how we needed them to, resulting in zero PCB modification:
+<p>Here’s the main repo for the node we made: <a
+href="https://github.com/paulwalko/faketec-co2"
+class="uri">https://github.com/paulwalko/faketec-co2</a>. This is
+heavily based on gargomoma’s faketec v2 board, but instead of a screen
+we use a SCD41 CO2 sensor. It just so happened that the screen pins and
+SCD41 pins lined up exactly how we needed them to, resulting in zero PCB
+modification:
 <img width="685" height="405" alt="CO2 monitoring node" src="https://github.com/user-attachments/assets/a2db2521-bbf2-4570-8763-aed0e4f19c5c" /></p>
 <p>At the time Meshtastic did not have support for the SCD41 sensor, so
 I was curious if I could simply stack a second board to gather
@@ -65,7 +67,9 @@ ensuring all the nodes had their circuitpy boards disabled, plus
 ensuring all the configuration in Meshtastic is correct. For reasons I
 can’t explain, nodes seem to randomly pick some settings to apply and
 some to not. In any case, all the nodes are functional and viewable at
-https://mesh.caving.dev/public-dashboards/e2105032b16d47b9a42ee319d17e72b4.</p>
+<a
+href="https://mesh.caving.dev/public-dashboards/e2105032b16d47b9a42ee319d17e72b4"
+class="uri">https://mesh.caving.dev/public-dashboards/e2105032b16d47b9a42ee319d17e72b4</a>.</p>
 <p>A preview of what’s to come:
 <img width="942" height="314" alt="CO2 Dashboard" src="https://github.com/user-attachments/assets/c8aebb1c-0ce9-4d8b-9c91-c6cca111881e" /></p>
 
