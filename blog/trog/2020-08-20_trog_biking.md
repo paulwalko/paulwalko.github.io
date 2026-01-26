@@ -1,10 +1,7 @@
-Building the Ultimate Cave Bike
-Paul Walko
-
+# Building the Ultimate Cave Bike
+Written for the 2020 edition of the VPI Cave Club's Trogolodyte Newsletter
 
 Do you ever wish you could bike to all your favorite caves instead of getting your car all dirty every time you go caving? Yeah? Me too. This is THE definitive guide to building a bike capable of handling any ride to a cave including all gear.
-
-
 
 Here are some specific features I'm looking for:
 -  Steel frame (for a more comfortable ride vs aluminum)
@@ -28,10 +25,6 @@ The first 2 requirements narrow things down quite a bit. I mainly looked at 3 ma
 With the frame out of the way the next big things are figuring out the wheels and drivetrain. Thankfully East Coasters helped out a lot with the wheels and I decided to use a standard 11 speed Shimano groupset to keep things simple. I won't bore you with all the tiny details about sizing or figuring out which brakes to get, but I spent a lot of time looking through tons of different options.
 
 The specific front and rear rack aren't super important as long as you can fit a front randonneur bag along with 2 rear panniers and have spots to strap more stuff on the rear rack. With all that figured out, let's take a look at what we're working with!
-
-
-
-<INSERT PICTURE HERE>
 
 
 
