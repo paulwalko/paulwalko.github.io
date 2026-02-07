@@ -1,6 +1,10 @@
 # Air Quality Monitoring at FOSDEM 2026: Part 2
 See https://paul.walko.org/blog/2026_01_25-meshtastic-fosdem-part1.html for background about this effort. This idea was initially thought of by Crofton, but it wasn't until we came across Meshtastic as a good method of transporting metrics that this became a reality.
 
+Here's a good overview of what's considered "good" Air Quality:
+
+<img width="400" height="419" alt="CO2 ppm Air Quality chart" src="https://github.com/user-attachments/assets/ad220c01-3696-4336-9565-8c7c3f31b09e" />
+
 ## Day 1 CO2 Metrics
 <img width="955" height="284" alt="Day 1 CO2 Metrics" src="https://github.com/user-attachments/assets/93bdb9e3-6b31-4d5b-90a8-67ebb05a2620" />
 
@@ -12,6 +16,8 @@ Here's the detailed readings for each node:
 - Robotics devroom, starting at 4000 ppm then declined to 2000 ppm in the afternoon.
 - Virtualization devroom, at 2000 ppm
 - Gnuradio stand (AW building), around 2000 ppm all day
+
+See https://fosdem.org/2026/schedule/roomtracks/ for the actual room location for each of the above rooms.
 
 At first glance here, the CRA devroom makes everything else look insignificant. This is partially true, but excluding that shows that most other rooms were above 2000 ppm nearly the whole day
 <img width="955" height="284" alt="Day 1 CO2 Metrics excluding CRA devroom" src="https://github.com/user-attachments/assets/c5708e9c-bf86-4eb6-adb8-0290712e9b7d" />
