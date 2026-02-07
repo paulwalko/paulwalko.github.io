@@ -9,6 +9,7 @@ Here's a good overview of what's considered "good" Air Quality:
 <img width="955" height="284" alt="Day 1 CO2 Metrics" src="https://github.com/user-attachments/assets/93bdb9e3-6b31-4d5b-90a8-67ebb05a2620" />
 
 Here's the detailed readings for each node:
+
 - CRA devroom at 5000 ppm
 - "Building Europe’s Public Digital Infrastructure", initially at 4000 ppm but went down to 2000.
 - Grafana stand (K building), around 1800 ppm all day
