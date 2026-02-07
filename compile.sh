@@ -22,6 +22,7 @@ header='<!DOCTYPE html>
 </head>
 <body>
   <div class="content blog">
+    <p><a href="/">Home</a></p>
 '
 
 # HTML template footer
