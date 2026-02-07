@@ -1,5 +1,5 @@
 # Building the Ultimate Cave Bike
-Written for the 2021 edition of the VPI Cave Club's Trogolodyte Newsletter
+Written for the 2021 edition of the VPI Cave Club's Troglodyte Newsletter
 
 Do you ever wish you could bike to all your favorite caves instead of getting your car all dirty every time you go caving? Yeah? Me too. This is THE definitive guide to building a bike capable of handling any ride to a cave including all gear.
 
@@ -13,7 +13,7 @@ Here are some specific features I'm looking for:
 * 650b wheels for hills (bigger than typical mtb, smaller than typical road)
 * Good gearing for hills
 * Dynamo hub for charging 18650s
-* Disk brakes (for better breaking in bad weather)
+* Disk brakes (for better braking in bad weather)
 * Lots of holes for mounting things
 
 For you bike nerds out there this style might sound familiar; that's because it's essentially the same as old style randonneuring bikes, but unfortunately it's a fairly niche market now. Between the rear rack, front rack, and frame bag we should have enough space for everything.
