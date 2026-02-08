@@ -5,6 +5,12 @@ Here's a good overview of what's considered "good" Air Quality:
 
 <img width="400" height="419" alt="CO2 ppm Air Quality chart" src="https://github.com/user-attachments/assets/ad220c01-3696-4336-9565-8c7c3f31b09e" />
 
+## Day 0 (Delirium Village) CO2 Metrics
+<img width="805" height="828" alt="Day 0 (Delirium Village) CO2 Metrics" src="https://github.com/user-attachments/assets/9192a21f-fe90-4cea-8eeb-0621a5baa7b4" />
+
+This was a very good test run of the CO2 stack. To no surprise the CO2 levels were quite high, hitting 4000 ppm around 8pm.
+
+
 ## Day 1 CO2 Metrics
 <img width="955" height="284" alt="Day 1 CO2 Metrics" src="https://github.com/user-attachments/assets/93bdb9e3-6b31-4d5b-90a8-67ebb05a2620" />
 
