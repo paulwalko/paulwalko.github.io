@@ -47,6 +47,13 @@ By this point I was tired of organizing distribution of nodes so we had much few
 
 The SDR devroom topped out at about 3000 ppm in the morning, but unfortunately the sensor was not present in the room for the afternoon. The room reportedly got more packed as the day went on, so this likely went at least to 4000 ppm if not higher.
 
+## Tech Stack
+This stack consists of MQTT, python poller, postgres, and Grafana.  
+
+Initially I was using telegraf to poll mqtt, but this didn't have very good integration with the meshtastic protobufs meaning I was forced to use the JSON output option when decoding packets. This also meant I had to use esp32, as the nrf52 chips don't have enough capacity for the JSON decoder library. This is a issue if you are relying on battery power for the MQTT uplink as esp32 uses much more power than the nrf52 chip. Thankfully we did have a reliable power uplink (huge thanks to the gnuradio stand).  
+
+Storing and visualizing the data was pretty straightfoward with postgres as the database and Grafana for all the visuals.
+
 ## Summary & Improvements
 By far, the biggest hurdle was distribution of the monitoring nodes. FOSDEM staff did not allow us to place nodes without someone (such as devroom managers) watching over them at all times, otherwise we would've liked to place them Friday evening before the conference started. Once sessions got going, nodes proved to be very difficult to get into rooms.
 
