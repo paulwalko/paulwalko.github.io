@@ -10,7 +10,8 @@ I'd mostly forgotten about this project until recently, when I remembered I had 
 Still, both the primary and worker nodes are restricted by my slow residential ISP, so naturally the next step was to migrate my primary Hetzner server to run k8s. Previously it was a collection of docker scripts that works pretty well, and most of all is super simple, but well k8s is more fun. I'm sure I'll switch to something else entirely within a year.  
 
 ## AI
-Yes, I did heavily use claude to debug and get things working initially. I work with docker and containers on a daily basis and have a good idea of how things *should* work, but was not super familiar with the internals of Kubernetes and really didn't want to spend months figuring it out. That being said, there's quite a few interesting networking obstacles specifically related to IPv6-only and Tailscale I had to overcome:  
+Yes, I did heavily use claude to debug and get things working initially. I work with docker and containers on a daily basis and have a good idea of how things *should* work, but was not super familiar with the internals of Kubernetes and really didn't want to spend months figuring it out. That being said, there's quite a few interesting networking obstacles specifically related to IPv6-only and Tailscale I had to overcome:
+
 - Probably the most obvious; many applications don't have IPv6 enabled by default. I found that more often than not, the underlying libraries do so this was a matter of applying patches or overriding env vars, or even applying a patch to a bundled `node_modules` library.
 - Accepting IPv4 + IPv6: Accepting IPv6 is trivial since the cluster already supports it, but also having IPv4 required having traefik listen on the host + socat for a few services that I don't want to or can't proxy.
 - Firewalling: Initially I wanted to keep everything on the host, but because of how k8s ports bind directly in the kernel this was rather difficult. Coupled with NAT64 made this pretty much impossible so I eventually used Hetzner's built-in firewall support (which seems to be how k8s is designed; have someone else manage firewall).
@@ -18,6 +19,7 @@ Yes, I did heavily use claude to debug and get things working initially. I work 
 
 ## Nextcloud, RustFS, QField
 These services are all rather new additions to my self-hosted stack.
+
 - Nextcloud is well known as being the "standard" google drive alternative, but is also well known for being bloated. I'm happy to say I got this running and it feels just about as slow or less slow as onedrive or google drive.
 - RustFS is a *very* new self-hosted S3 provider. It's really taken off now that minio has archived their open source repo and is a more or less a direct drop-in replacement. I'm sure I'll be the first to know when they release a bug as they only had a beta release last week.
 - QField is another service I'd been wanting to host for a while now, but the provided self-hosted setup just wasn't very user friendly and Mergin Maps solves the same problem. Another case where I had claude sort through the confusing docs and get things working.
