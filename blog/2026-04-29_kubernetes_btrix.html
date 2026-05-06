@@ -16,7 +16,7 @@ solution</h1>
 <p>A few years ago I discovered <a
 href="https://github.com/webrecorder/browsertrix"
 class="uri">https://github.com/webrecorder/browsertrix</a>, a full
-featured web archiving tool. I’ve made much simpler attemps at thie
+featured web archiving tool. I’ve made much simpler attempts at this
 before such as using their cli or wget, but this seemed like a good
 excuse to run Kubernetes since they only support helm charts, at least
 for official self-hosting.</p>
@@ -32,53 +32,78 @@ Another issue was the primary homelab server is rather old and memory
 constrained with 16GB, so it quickly falls over when crawling several
 pages or when serving them up to be viewed. Anyways, the mini pc made a
 great addon and (much with the help of claude) I had a fully functional
-multi-node cluster going. Somewhere long this time I decided it should
+multi-node cluster going. Somewhere along this time I decided it should
 be IPv6 only because why not, which proved to be rather educational
 getting all of that working. In particular I discovered just how
 powerful k8s patching can be.</p>
 <p>Still, both the primary and worker nodes are restricted by my slow
-residental ISP, so naturally the next step was to migrate my primary
+residential ISP, so naturally the next step was to migrate my primary
 Hetzner server to run k8s. Previously it was a collection of docker
 scripts that works pretty well, and most of all is super simple, but
-well k8s is more fun. I’m sure I’lll switch to something else entirely
+well k8s is more fun. I’m sure I’ll switch to something else entirely
 within a year.</p>
 <h2 id="ai">AI</h2>
 <p>Yes, I did heavily use claude to debug and get things working
 initially. I work with docker and containers on a daily basis and have a
 good idea of how things <em>should</em> work, but was not super familiar
-with the internals of Kubernentes and really didn’t want to spend months
+with the internals of Kubernetes and really didn’t want to spend months
 figuring it out. That being said, there’s quite a few interesting
 networking obstacles specifically related to IPv6-only and Tailscale I
-had to overcome: * Probably the most obvious; many applications don’t
-have IPv6 enabled by default. I found that more often that not, the
-underlying libraries do so this was a matter of applying patches or
-overriding env vars, of even applying a patch to a bundled
-<code>node_modules</code> library. * Accepting IPv4 + IPv6: Accepting
-IPv6 is trivial since the cluster already supports it, but also having
-IPv4 required having traefik listen on the host + socat for a few
-services that I don’t want to or can’t proxy. * Firwalling: Initially I
-wanted to keep everything on the host, but because of how k8s ports bind
-directly in the kernel this was rather difficult. Coupled with NAT64
-made this pretty much impossible so I eventually used Hetzner’s built-in
-firewall support (which seems to be how k8s is designed; have someone
-else manage firewall). * Not so much a huge hurdle, but tailscale’s
-route advertising feature is very useful and easy to use.</p>
-<h2 id="self-hosted-photos">Self-hosted Photos</h2>
+had to overcome:</p>
+<ul>
+<li>Probably the most obvious; many applications don’t have IPv6 enabled
+by default. I found that more often than not, the underlying libraries
+do so this was a matter of applying patches or overriding env vars, or
+even applying a patch to a bundled <code>node_modules</code>
+library.</li>
+<li>Accepting IPv4 + IPv6: Accepting IPv6 is trivial since the cluster
+already supports it, but also having IPv4 required having traefik listen
+on the host + socat for a few services that I don’t want to or can’t
+proxy.</li>
+<li>Firewalling: Initially I wanted to keep everything on the host, but
+because of how k8s ports bind directly in the kernel this was rather
+difficult. Coupled with NAT64 made this pretty much impossible so I
+eventually used Hetzner’s built-in firewall support (which seems to be
+how k8s is designed; have someone else manage firewall).</li>
+<li>Not so much a huge hurdle, but tailscale’s route advertising feature
+is very useful and easy to use.</li>
+</ul>
+<h2 id="nextcloud-rustfs-qfield">Nextcloud, RustFS, QField</h2>
+<p>These services are all rather new additions to my self-hosted
+stack.</p>
+<ul>
+<li>Nextcloud is well known as being the “standard” google drive
+alternative, but is also well known for being bloated. I’m happy to say
+I got this running and it feels just about as slow or less slow as
+onedrive or google drive.</li>
+<li>RustFS is a <em>very</em> new self-hosted S3 provider. It’s really
+taken off now that minio has archived their open source repo and is a
+more or less a direct drop-in replacement. I’m sure I’ll be the first to
+know when they release a bug as they only had a beta release last
+week.</li>
+<li>QField is another service I’d been wanting to host for a while now,
+but the provided self-hosted setup just wasn’t very user friendly and
+Mergin Maps solves the same problem. Another case where I had claude
+sort through the confusing docs and get things working.</li>
+</ul>
+<h1 id="self-hosted-photos">Self-hosted Photos</h1>
 <p>For nearly 8 years now I’ve been self-hosting photos after getting
-frusated with Google Photos.</p>
+frustrated with Google Photos.</p>
 <p>I think in that time I’ve tried Photosync (native SMB) + some viewer,
 nextcloud, syncthing, and more recently Immich.</p>
-<p>In any case, I have a few requirements: * Web &amp; mobile interface
-to browse and search * Automatic backup from Android * Lagless video
-playback * Photos should be stored on disk and accessible in a simple
+<p>In any case, I have a few requirements: - Web &amp; mobile interface
+to browse and search - Automatic backup from Android - Lagless video
+playback - Photos should be stored on disk and accessible in a simple
 file structure</p>
 <p>Taking all that into account:</p>
-<p>Android (running photosync) – sync –&gt; SMB endpoint; saves at
-/archive/photos &lt;– Immich reads and indexes as external library ^ | |
-syncthing reads and sync to devices for lagless video playback</p>
+<pre><code>Android (running photosync) -- sync --&gt; SMB endpoint; saves at /archive/photos &lt;-- Immich reads and indexes as external library
+                                                                       ^
+                                                                       |
+                                                                       |
+                                    syncthing reads and syncs to devices for lagless video playback</code></pre>
 <p>I was running plain Immich for a few years, but the biggest issue was
-video playback is always laggy, wheter it’s in the web browser of mobile
-app.</p>
+video playback is always laggy, whether it’s in the web browser or
+mobile app.</p>
 
   </div>
 </body>
