@@ -120,19 +120,19 @@
 \section{Employment}
   \resumeSubHeadingListStart
     \resumeSubheading
-      {DevOps Engineer} {Aug. 2019 -- Present}
-      {Ozmo, Inc}{Blacksburg, VA}
+      {Senior DevOps Engineer} {Aug. 2019 -- Present}
+      {Ozmo, Inc (Associate $\rightarrow$ Senior, Jan. 2023)}{Blacksburg, VA}
       \resumeItemListStart
-        \resumeItem{\textbf{Observability}: Built monitoring stack with Grafana, OpenTelemetry, ELK, Kafka}
-        \resumeItem{\textbf{AWS ECS/Fargate}: Helped migrate from Elasticbeanstalk}
-        \resumeItem{\textbf{SOC 2}: Key component of SOC 2 Audit process}
-        \resumeItem{\textbf{CI Testing}: Significantly improved PR turnaround time and developer happiness with automated testing}
-        \resumeItem{\textbf{OpenVPN Cloud}: Implemented always on split-tunnel VPN to support remote work}
-        \resumeItem{Helped build event-driven search service in AWS: \\ \href{https://ozmo.com/blog/building-a-world-wide-real-time-search-service/}{https://ozmo.com/blog/building-a-world-wide-real-time-search-service/}}
+        \resumeItem{\textbf{AWS Architecture}: Architect production applications (ECS/Fargate, Lambda, RDS, OpenSearch) for maintainability and security; lead quarterly DevOps planning as most senior engineer on team}
+        \resumeItem{\textbf{SOC 2}: Own end-to-end compliance program -- IAM access reviews, vulnerability management, CI/change controls, audit logging, encryption, backup/DR testing, vendor risk reviews; liaison with external auditor}
+        \resumeItem{\textbf{Observability}: Built ELK + Grafana stack ingesting $\sim$1M log events/hour; primary system for production alerting and incident response}
+        \resumeItem{\textbf{CI/CD}: Leading migration from Jenkins to GitHub Actions; embed with engineering teams on pipeline design and AWS CDK adoption}
+        \resumeItem{\textbf{OpenVPN Cloud}: Implemented always-on split-tunnel VPN supporting remote work}
+        \resumeItem{\textbf{Search Service}: Contributed to event-driven global search service in AWS \\ \href{https://ozmo.com/blog/building-a-world-wide-real-time-search-service/}{ozmo.com/blog/building-a-world-wide-real-time-search-service}}
       \resumeItemListEnd
 
     \resumeSubheading
-      {Systems Engineer }{Jan. -- July 2019}
+      {Systems Engineer}{Jan. -- July 2019}
       {Solers, Inc}{Arlington, VA}
       \resumeItemListStart
         \resumeItem{Worked with Docker Swarm and Ansible}
@@ -140,13 +140,30 @@
       \resumeItemListEnd
 
     \resumeSubheading
-      {Research Assistant - Analyzed Netflow data} {Sep. 2016 -- Dec. 2017}
-      {Hume Center at Virginia Tech}{Blacksburg, VA}
+      {Cyber Security Engineer}{May 2017 -- Aug. 2018}
+      {Cisco}{Raleigh-Durham, NC}
       \resumeItemListStart
-        \resumeItem{Learned about issues with large data sets}
-        \resumeItem{Intercepted data from keyboards, mice, and other BLE devices}
-        \resumeItem{Created Bluetooth pen-testing device with Ubertooth One and worked with devs on IRC}
+        \resumeItem{Developed Linux security module anti-malware for IoT devices}
+        \resumeItem{Hardened Linux systems and kernels}
+        \resumeItem{Analyzed and prevented potential security bugs}
       \resumeItemListEnd
+
+    \resumeSubheading
+      {Research Assistant}{Sep. 2016 -- Dec. 2017}
+      {Hume Center at Virginia Tech}{Blacksburg, VA}
+  \resumeSubHeadingListEnd
+
+
+%-----------SKILLS-----------
+\section{Skills}
+  \resumeSubHeadingListStart
+    \small{\item{
+      \textbf{AWS}: API Gateway, CloudFormation, CloudFront, CloudWatch, EC2, ECS/Fargate, ElasticSearch/OpenSearch, Lambda, RDS, Route53, S3 \\
+      \textbf{GIS Tools}: QGIS, GDAL, Leaflet, GeoServer, MapProxy \\
+      \textbf{Languages}: Bash, C, Java, JavaScript/NodeJS, Python, Ruby \\
+      \textbf{Tools}: AWS CDK, Docker, GitHub Actions, Google Workspace, Git, Grafana, Helm, Jenkins, Kubernetes, Librato, Linux, NewRelic, Tailscale, Ubiquiti \\
+      \textbf{Other}: Amateur Radio (KN4VDC), Argentine Tango (assist with lessons) \\
+    }}
   \resumeSubHeadingListEnd
 
 
@@ -156,17 +173,23 @@
     \resumeProjectHeading
       {\textbf{Self-Hosted Services}}{}
       \resumeItemListStart
+        \resumeItem{\textbf{Kubernetes Cluster}: IPv6-only multi-node k8s cluster on Tailscale running Browsertrix, Forgejo, Immich, Nextcloud, RustFS}
+        \resumeItem{\textbf{Cavepedia}: \href{https://github.com/cavepedia/cavepediav2}{github.com/cavepedia/cavepediav2}. Semantic search + chat over decades of NSS caving documents in partnership with the National Speleological Society; pgvector embeddings, FastMCP server, PydanticAI agent, Auth0 RBAC.}
         \resumeItem{\textbf{Mergin Maps}: \href{https://maps.caving.dev}{maps.caving.dev}. Used on remote caving expeditions to manage GIS.}
         \resumeItem{\textbf{Mastodon}: \href{https://social.bigcavemaps.com}{social.bigcavemaps.com}}
         \resumeItem{\textbf{Geoserver/Leaflet/MapProxy}: Used to analyze lidar and find potential caves.}
-        \resumeItem{\textbf{Cavepedia}: \href{https://git.seaturtle.pw/pew/cavepedia}{git.seaturtle.pw/pew/cavepedia}. Architected pipeline to import old document, perform OCR, analyze readability, and index into a fully offline searchable application for use in the field.}
-        \resumeItem{\textbf{Minio, Gitea, Photoview}}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\textbf{FOSDEM 2026 Air Quality Monitoring}}{Feb. 2026}
+      \resumeItemListStart
+        \resumeItem{Co-built distributed CO\textsubscript{2}/temp/humidity sensor network deployed across 20+ devrooms (Meshtastic mesh, MQTT, Postgres, Grafana); results shared with FOSDEM staff for ventilation planning. \href{https://paul.walko.org/blog/2026-02-07_fosdem-part2.html}{paul.walko.org/blog/2026-02-07\_fosdem-part2}}
       \resumeItemListEnd
 
     \resumeProjectHeading
       {\textbf{Free/Open Software Contributions}}{}
       \resumeItemListStart
-        \resumeItem{\textbf{2013 -- Present}: Use and contribute to OpenStreetMap, especially not well known trails. \href{https://www.openstreetmap.org/user/bigmapscaver}{openstreetmap.org/user/bigmapscaver}.}
+        \resumeItem{\textbf{2013 -- Present}: Use and contribute to OpenStreetMap, especially not well known trails.}
         \resumeItem{\textbf{2019 -- Present}: \href{https://archiveteam.org/}{Archive Team} -- Help archive Internet services and manage massive amounts of data.}
       \resumeItemListEnd
   \resumeSubHeadingListEnd
@@ -197,9 +220,6 @@
         \resumeItem{\textbf{\href{https://github.com/ocvt/dolabra}{Dolabra}}: Built backend API in Golang and SQLite + front-end in plain HTML/JavaScript. Used Open-ID Connect for auth, Stripe for payments, and Docker for testing and deployment in AWS.}
         \resumeItem{\textbf{Appalachian Trail Maintenance}: Regularly clear trail of trees, brush, and clean shelters.}
       \resumeItemListEnd
-
-    \resumeProjectHeading
-      {\textbf{Amateur Radio} $|$ Callsign: KN4VDC} {2019 - Present}
   \resumeSubHeadingListEnd
 
 
@@ -220,12 +240,6 @@
     \resumeSubheading
       {Virginia Tech}{Blacksburg, VA}
       {Bachelor of Science in Computer Science; Minor in Cyber Security} {Aug. 2015 -- Dec. 2018}
-    \small{\item{
-      \textbf{AWS}: API Gateway, CloudFormation, CloudFront, CloudWatch, EC2, ECS/Fargate, ElasticSearch/OpenSearch, Lambda, RDS, Route53, S3 \\
-      \textbf{GIS Tools}: QGIS, GDAL, Leaflet, GeoServer, MapProxy \\
-      \textbf{Languages}: Bash, C, Java, JavaScript/NodeJS, Python, Ruby \\
-      \textbf{Tools}: Docker, Google Workspace, Git, Grafana, Jenkins, Librato, Linux, NewRelic, Ubiquiti \\
-    }}
   \resumeSubHeadingListEnd
 
 %-------------------------------------------
