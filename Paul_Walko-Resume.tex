@@ -3,6 +3,12 @@
 % Author : Jake Gutierrez
 % Based on: https://github.com/sb2nov/resume
 % License : MIT
+%
+% ATS notes: this layout deliberately avoids tabular/right-aligned columns.
+% PDF text extractors read a page column-by-column, so right-aligned dates get
+% pulled out of their job entry and grouped together at the end of the document,
+% which is why Workday-style parsers lose employment history. Everything below
+% flows left-to-right on a single line so the extracted text stays contiguous.
 %------------------------
 
 \documentclass[letterpaper,12pt]{article}
@@ -18,7 +24,7 @@
 \usepackage{fancyhdr}
 \usepackage[english]{babel}
 \usepackage{tabularx}
-%\input{glyphtounicode}
+\input{glyphtounicode}
 
 
 %----------FONT OPTIONS----------
@@ -52,6 +58,14 @@
 \raggedright
 \setlength{\tabcolsep}{0in}
 
+% Document metadata (some parsers read this before the page content)
+\hypersetup{
+  pdftitle={Paul Walko - Resume},
+  pdfauthor={Paul Walko},
+  pdfsubject={Senior DevOps Engineer},
+  pdfkeywords={DevOps, AWS, Kubernetes, Docker, Ansible, CI/CD, SOC 2, Observability}
+}
+
 % Sections formatting
 \titleformat{\section}{
   \vspace{-4pt}\scshape\raggedright\large
@@ -68,29 +82,48 @@
   }
 }
 
+% #1 job title, #2 employer, #3 location, #4 dates
+%
+% Three left-aligned lines, one field per line where it matters. Workday was
+% observed to take "everything before the date range on the line" as the
+% employer, so putting the employer on a line by itself -- and leading the
+% third line with the dates -- keeps the location out of the employer field.
 \newcommand{\resumeSubheading}[4]{
   \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
-      \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-7pt}
+    \textbf{#1} \\
+    {\small\textit{#2}} \\
+    {\small\textit{#4} \sep{} \textit{#3}}
+    \vspace{-5pt}
 }
 
-\newcommand{\resumeSubSubheading}[2]{
+% #1 heading line, including any dates, separated with \sep
+\newcommand{\resumeProjectHeading}[1]{
     \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \textit{\small#1} & \textit{\small #2} \\
-    \end{tabular*}\vspace{-7pt}
-}
-
-\newcommand{\resumeProjectHeading}[2]{
-    \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \small#1 & #2 \\
-    \end{tabular*}\vspace{-7pt}
+    \small{#1}\vspace{-5pt}
 }
 
 \newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+% #1 school, #2 degree, #3 years, #4 location
+% Education parsers key off the school name first and want bare years, not
+% "August 2015 - December 2018" -- Workday returned no years for that form.
+\newcommand{\resumeEducation}[4]{
+  \vspace{-2pt}\item
+    \textbf{#1} \\
+    {\small\textit{#2}} \\
+    {\small\textit{#3} \sep{} \textit{#4}}
+    \vspace{-5pt}
+}
+
+% Inline separator. Kept as a macro so the docx build can swap the math-mode
+% bar for a literal "|" -- inline math becomes an unreadable Word equation.
+\newcommand{\sep}{$|$}
+
+% Plain text lines (Skills, Talks). Separate from \resumeSubHeadingListStart so
+% the docx build can render entry lists as paragraphs and these as bullets.
+\newcommand{\resumeTextListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeTextListEnd}{\end{itemize}}
+\newcommand{\resumeTextItem}[1]{\item{\small #1}\vspace{-4pt}}
 
 \renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
 
@@ -106,57 +139,74 @@
 \begin{document}
 
 \begin{center}
-    \textbf{\Huge \scshape Paul Walko} \\ \vspace{1pt}
-    \small Denver, CO $|$ \href{tel:+15025096242}{+1 (502) 509-6242} $|$ \href{mailto:paul@bigcavemaps.com}{paul@bigcavemaps.com} $|$
-    \href{https://paul.walko.org}{paul.walko.org} $|$ \href{https://github.com/paulwalko}{github.com/paulwalko}
+    \textbf{\Huge Paul Walko} \\ \vspace{2pt}
+    \small Denver, CO \\ \vspace{2pt}
+    \small Mobile: \href{tel:5025096242}{+1 (502) 509-6242} \sep{} Email: \href{mailto:paul@bigcavemaps.com}{paul@bigcavemaps.com} \\ \vspace{2pt}
+    \small \href{https://paul.walko.org}{paul.walko.org} \sep{} \href{https://github.com/paulwalko}{github.com/paulwalko}
 \end{center}
 
 
 
 
-
-%-----------EMPLOYMENT-----------
-\section{Employment}
+%-----------WORK EXPERIENCE-----------
+\section{Work Experience}
   \resumeSubHeadingListStart
     \resumeSubheading
-      {Senior DevOps Engineer} {Aug. 2019 -- Present}
-      {Ozmo, Inc (Associate $\rightarrow$ Senior, Jan. 2023)}{Blacksburg, VA}
+      {Senior DevOps Engineer}
+      {Ozmo, Inc}
+      {Blacksburg, VA}
+      {August 2019 - Present}
       \resumeItemListStart
-        \resumeItem{\textbf{AWS Architecture}: Architect production applications (ECS/Fargate, Lambda, RDS, OpenSearch) for maintainability and security; lead quarterly DevOps planning as most senior DevOps Engineer}
+        \resumeItem{\textbf{AWS Architecture}: Architect production applications (ECS, Fargate, Lambda, RDS, OpenSearch) for maintainability and security; lead quarterly DevOps planning as most senior DevOps Engineer}
         \resumeItem{\textbf{AI}: Experienced with using Claude Code to quickly troubleshoot AWS, all from the CLI; Adapted existing CI/CD pipelines to be more ``AI Friendly'' allowing other engineers to have less friction when deploying}
         \resumeItem{\textbf{SOC 2}: Own end-to-end compliance program: IAM access reviews, vulnerability management, CI/change controls, audit logging, encryption, backup/DR testing, vendor risk reviews; liaison with external auditor}
-        \resumeItem{\textbf{Observability}: Built ELK + Grafana stack ingesting $\sim$30M log events/day; primary system for production alerting and incident response}
-        \resumeItem{\textbf{CI/CD}: Leading migration from Jenkins to GitHub Actions; embed with engineering teams on pipeline design and AWS CDK adoption}
+        \resumeItem{\textbf{Observability}: Built ELK + Grafana stack ingesting 30M+ log events/day; primary system for production alerting and incident response}
+        \resumeItem{\textbf{CI/CD}: Led migration efforts from Jenkins to GitHub Actions and frequently assist other engineers with CI/CD related tasks}
       \resumeItemListEnd
 
     \resumeSubheading
-      {Systems Engineer}{Jan. -- July 2019}
-      {Solers, Inc}{Arlington, VA}
+      {Systems Engineer}
+      {Solers, Inc}
+      {Arlington, VA}
+      {January 2019 - July 2019}
       \resumeItemListStart
         \resumeItem{Worked with Docker Swarm and Ansible}
         \resumeItem{Deployed central logging solution for clustered environment}
       \resumeItemListEnd
 
     \resumeSubheading
-      {Cyber Security Engineer}{May 2017 -- Aug. 2018}
-      {Cisco}{Raleigh-Durham, NC}
+      {Cyber Security Engineer}
+      {Cisco}
+      {Raleigh-Durham, NC}
+      {May 2017 - August 2018}
 
     \resumeSubheading
-      {Research Assistant}{Sep. 2016 -- Dec. 2017}
-      {Hume Center at Virginia Tech}{Blacksburg, VA}
+      {Research Assistant}
+      {Hume Center at Virginia Tech}
+      {Blacksburg, VA}
+      {September 2016 - December 2017}
   \resumeSubHeadingListEnd
 
 
 %-----------SKILLS-----------
 \section{Skills}
+  \resumeTextListStart
+    \resumeTextItem{\textbf{AWS}: API Gateway, CloudFormation, CloudFront, CloudWatch, EC2, ECS, Fargate, Elasticsearch, OpenSearch, Lambda, RDS, Route53, S3}
+    \resumeTextItem{\textbf{GIS Tools}: QGIS, GDAL, Leaflet, GeoServer, MapProxy}
+    \resumeTextItem{\textbf{Languages}: Bash, C, Java, JavaScript, Node.js, Python, Ruby}
+    \resumeTextItem{\textbf{Tools}: Ansible, AWS CDK, Docker, GitHub Actions, Google Workspace, Git, Grafana, Helm, Jenkins, Kubernetes, Librato, Linux, New Relic, Tailscale, Ubiquiti}
+    \resumeTextItem{\textbf{Other}: Amateur Radio (KN4VDC), Argentine Tango (assist with lessons)}
+  \resumeTextListEnd
+
+
+%-----------EDUCATION-----------
+\section{Education}
   \resumeSubHeadingListStart
-    \small{\item{
-      \textbf{AWS}: API Gateway, CloudFormation, CloudFront, CloudWatch, EC2, ECS/Fargate, ElasticSearch/OpenSearch, Lambda, RDS, Route53, S3 \\
-      \textbf{GIS Tools}: QGIS, GDAL, Leaflet, GeoServer, MapProxy \\
-      \textbf{Languages}: Bash, C, Java, JavaScript/NodeJS, Python, Ruby \\
-      \textbf{Tools}: Ansible, AWS CDK, Docker, GitHub Actions, Google Workspace, Git, Grafana, Helm, Jenkins, Kubernetes, Librato, Linux, NewRelic, Tailscale, Ubiquiti \\
-      \textbf{Other}: Amateur Radio (KN4VDC), Argentine Tango (assist with lessons) \\
-    }}
+    \resumeEducation
+      {Virginia Tech}
+      {Bachelor of Science in Computer Science, Minor in Cyber Security}
+      {2015 - 2018}
+      {Blacksburg, VA}
   \resumeSubHeadingListEnd
 
 
@@ -164,7 +214,7 @@
 \section{Projects}
   \resumeSubHeadingListStart
     \resumeProjectHeading
-      {\textbf{Self-Hosted Services}}{}
+      {\textbf{Self-Hosted Services}}
       \resumeItemListStart
         \resumeItem{\textbf{Kubernetes Cluster}: IPv6-only multi-node k8s cluster on Tailscale running Browsertrix, Forgejo, Immich, Nextcloud, RustFS}
         \resumeItem{\textbf{Cavepedia}: \href{https://github.com/cavepedia/cavepediav2}{github.com/cavepedia/cavepediav2}. Semantic search + chat over decades of NSS caving documents in partnership with the National Speleological Society; pgvector embeddings, FastMCP server, PydanticAI agent, Auth0 RBAC.}
@@ -174,16 +224,16 @@
       \resumeItemListEnd
 
     \resumeProjectHeading
-      {\textbf{FOSDEM 2026 Air Quality Monitoring}}{Feb. 2026}
+      {\textbf{FOSDEM 2026 Air Quality Monitoring}}
       \resumeItemListStart
         \resumeItem{Co-built distributed CO\textsubscript{2}/temp/humidity sensor network deployed across 20+ devrooms (Meshtastic mesh, MQTT, Postgres, Grafana); results shared with FOSDEM staff for ventilation planning. \href{https://paul.walko.org/blog/2026-02-07_fosdem-part2.html}{paul.walko.org/blog/2026-02-07\_fosdem-part2}}
       \resumeItemListEnd
 
     \resumeProjectHeading
-      {\textbf{Free/Open Software Contributions}}{}
+      {\textbf{Free/Open Software Contributions}}
       \resumeItemListStart
-        \resumeItem{\textbf{2013 -- Present}: Use and contribute to OpenStreetMap, especially not well known trails.}
-        \resumeItem{\textbf{2019 -- Present}: \href{https://archiveteam.org/}{Archive Team} -- Help archive Internet services and manage massive amounts of data.}
+        \resumeItem{\textbf{OpenStreetMap}: Contributor since 2013, especially not well known trails.}
+        \resumeItem{\textbf{\href{https://archiveteam.org/}{Archive Team}}: Help archive Internet services and manage massive amounts of data; contributor since 2019.}
       \resumeItemListEnd
   \resumeSubHeadingListEnd
 
@@ -192,7 +242,7 @@
 \section{Organizations}
   \resumeSubHeadingListStart
     \resumeProjectHeading
-      {\textbf{VPI Cave Club} $|$ \emph{\href{https://vpicave.club}{vpicave.club}} (Student Grotto of the NSS)} {2020 - Present}
+      {\textbf{VPI Cave Club} \sep{} \emph{\href{https://vpicave.club}{vpicave.club}} (Student Grotto of the NSS, member since 2020)}
       \resumeItemListStart
         \resumeItem{\textbf{Survey/Cartography}: Survey and map unexplored cave passage, including data entry and processing to create a finished map.}
         \resumeItem{\textbf{Training}: Teach new members basic caving skills, including vertical competence when climbing or abseiling rope.}
@@ -200,7 +250,7 @@
       \resumeItemListEnd
 
     \resumeProjectHeading
-      {\textbf{Virginia Tech Linux/Unix Users Group (VTLUUG)} $|$ \emph{\href{https://vtluug.org/}{vtluug.org}, \href{https://github.com/vtluug}{github.com/vtluug}}} {2016 - Present}
+      {\textbf{Virginia Tech Linux/Unix Users Group (VTLUUG)} \sep{} \emph{\href{https://vtluug.org/}{vtluug.org}, \href{https://github.com/vtluug}{github.com/vtluug}} (member since 2016)}
       \resumeItemListStart
         \resumeItem{\textbf{FreeIPA/LDAP}: Maintain accounts for email, shell access, and webserver.}
         \resumeItem{\textbf{\href{https://vtluug.org/wiki/Infrastructure}{Rebuilt Infrastructure}}: Updated services to deploy with Ansible and run all services with Docker.}
@@ -208,7 +258,7 @@
       \resumeItemListEnd
 
     \resumeProjectHeading
-      {\textbf{Outdoor Club at Virginia Tech (OCVT)} $|$ \emph{\href{https://ocvt.club/}{ocvt.club}, \href{https://github.com/ocvt}{github.com/ocvt}}} {2017 - Present}
+      {\textbf{Outdoor Club at Virginia Tech (OCVT)} \sep{} \emph{\href{https://ocvt.club/}{ocvt.club}, \href{https://github.com/ocvt}{github.com/ocvt}} (member since 2017)}
       \resumeItemListStart
         \resumeItem{\textbf{\href{https://github.com/ocvt/dolabra}{Dolabra}}: Built backend API in Golang and SQLite + front-end in plain HTML/JavaScript. Used OpenID Connect for auth, Stripe for payments, and Docker for testing and deployment in AWS.}
         \resumeItem{\textbf{Appalachian Trail Maintenance}: Regularly clear trail of trees, brush, and clean shelters.}
@@ -218,22 +268,13 @@
 
 %-----------TALKS-----------
 \section{Talks}
-  \resumeSubHeadingListStart
-    \small{\item{
-      \textbf{Cave Rescue Communications} (Toorcamp 2024): \href{https://archive.is/iX4s8}{archive.is/iX4s8} \\
-      \textbf{Austrian Expedition to the Loser Plateau} (NSS Convention 2023) \\
-      \textbf{Newberry's Cave Exploration} (NSS Convention 2022) \\
-    }}
-  \resumeSubHeadingListEnd
+  \resumeTextListStart
+    \resumeTextItem{\textbf{Cave Rescue Communications} (Toorcamp 2024): \href{https://archive.is/iX4s8}{archive.is/iX4s8}}
+    \resumeTextItem{\textbf{Austrian Expedition to the Loser Plateau} (NSS Convention 2023)}
+    \resumeTextItem{\textbf{Newberry's Cave Exploration} (NSS Convention 2022)}
+  \resumeTextListEnd
 
 
-%-----------EDUCATION-----------
-\section{Education}
-  \resumeSubHeadingListStart
-    \resumeSubheading
-      {Virginia Tech}{Blacksburg, VA}
-      {Bachelor of Science in Computer Science; Minor in Cyber Security} {Aug. 2015 -- Dec. 2018}
-  \resumeSubHeadingListEnd
 
 %-------------------------------------------
 \end{document}

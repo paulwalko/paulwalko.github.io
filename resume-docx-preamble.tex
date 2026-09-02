@@ -1,0 +1,39 @@
+% Docx build preamble.
+%
+% build-resume.sh splices this in front of Paul_Walko-Resume.tex's \begin{document}
+% body, replacing the LaTeX preamble, then runs pandoc. Redefining the resume's
+% macros here means the .tex stays the single source of content -- only the
+% rendering of each macro changes.
+%
+% Two things matter for ATS parsers reading a .docx:
+%   * No inline math. Pandoc turns $...$ into an OMML equation, which resume
+%     parsers cannot read at all. Hence \sep becomes a literal "|".
+%   * Job/education entries must be paragraphs, not list items, so the parser
+%     sees "title / employer | location | dates" as running text. Only the
+%     accomplishment bullets stay bulleted.
+
+\documentclass{article}
+\usepackage{hyperref}
+
+\newcommand{\sep}{|}
+
+\newcommand{\resumeSubHeadingListStart}{}
+\newcommand{\resumeSubHeadingListEnd}{}
+
+\newcommand{\resumeEducation}[4]{\par\noindent\textbf{#1}\newline #2\newline #3 \sep{} #4\par}
+\newcommand{\resumeSubheading}[4]{\par\noindent\textbf{#1}\newline #2\newline #4 \sep{} #3\par}
+\newcommand{\resumeProjectHeading}[1]{\par\noindent #1\par}
+
+% Workday drops the list marker on the FIRST item of every Word list, so the
+% opening bullet of each role description arrived unmarked. Emitting the bullet
+% as a literal character in a plain paragraph puts it in the text run, where no
+% list-handling logic can strip it. Skills/Talks below stay real Word lists -- a
+% literal bullet there would end up glued onto the first extracted skill.
+\newcommand{\resumeItemListStart}{}
+\newcommand{\resumeItemListEnd}{}
+\newcommand{\resumeItem}[1]{\par\noindent • #1\par}
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}}
+
+\newcommand{\resumeTextListStart}{\begin{itemize}}
+\newcommand{\resumeTextListEnd}{\end{itemize}}
+\newcommand{\resumeTextItem}[1]{\item #1}
